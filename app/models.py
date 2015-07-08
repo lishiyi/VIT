@@ -13,25 +13,19 @@ class User(db.Model):
 	
 	__tablename__ = 'user'
 	user_id = db.Column(db.Integer, primary_key = True)
-	email = db.Column(db.String(45), unique=True)
-	gender = db.Column(db.String(45))
-	act = db.Column(db.String(45))
-	weight = db.Column(db.Integer)
+	email = db.Column(db.String(255), unique=True)
+	gender = db.Column(db.String(255))
+	act = db.Column(db.String(255))
+	weight = db.Column(db.Float)
 	height = db.Column(db.Integer)
-	goal = db.Column(db.String(45))
+	goal = db.Column(db.String(255))
 	age = db.Column(db.Integer)
 	###
 	def __init__(self, email, gender, act, weight, height, goal, age):
-		
 		self.email = email.title()
 		self.gender = gender.title()
-		if act:
-			self.act = act.title()
-		if weight:
-			self.weight = weight.title()
-		if height:
-			self.height = height.title()
-		if goal:
-			self.goal = goal.title()
-		if age:
-			self.age = age.title()
+		self.act = act.title()
+		self.weight = weight.title()
+		self.height = height.title()
+		self.goal = goal.title()
+		self.age = age.title()

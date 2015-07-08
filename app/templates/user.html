@@ -1,4 +1,44 @@
 {% import "bootstrap/wtf.html" as wtf %}
-{% block title %}Flasky{% endblock %}
+{% block title %}Please input your information{% endblock %}
+
+{#
 
 {{ wtf.quick_form(form) }}
+
+<p>{{ wtf.form_field(form.email) }}</p>
+<p>{{ form.gender.label }}
+{{ wtf.form_field(form.gender) }}</p>
+<p>{{ form.act.label }}
+{{ wtf.form_field(form.act) }}</p>
+<p>{{ wtf.form_field(form.weight) }}</p>
+<p>{{ wtf.form_field(form.height) }}</p>
+<p>{{ form.goal.label }}
+{{ wtf.form_field(form.goal) }}</p>
+<p>{{ wtf.form_field(form.age) }}</p>
+{{ form.submit }}
+#}
+
+{{ form.hidden_tag() }}
+     
+    {{ form.email.label }}
+    {{ form.email }}         
+     
+    {{ form.gender.label }}
+    {{ form.gender }}
+     
+    {{ form.act.label }}
+    {{ form.act }}         
+
+    {{ form.weight.label }}
+    {{ form.weight }}         
+     
+    {{ form.height.label }}
+    {{ form.height }}
+
+    {{ form.goal.label }}
+    {{ form.goal }}
+
+    {{ form.age.label }}
+    {{ form.age }}
+
+    {{ form.submit }}

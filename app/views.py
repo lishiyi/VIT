@@ -43,9 +43,18 @@ def index():
 
 @app.route('/user', methods=['GET', 'POST'])
 def user():
-	name = None
 	form = UserForm()
-	if form.validate_on_submit():
-		name = form.name.data
-		form.name.data = ''
-	return render_template('user.html', form=form, name=name)
+	if request.method == 'POST':
+		newUser = User(email = form.email.data, 
+					   gender = form.gender.data, 
+					   act = form.act.data, 
+					   weight = form.weight.data,
+			           height = form.height.data, 
+			           goal = form.goal.data, 
+			           age = form.age.data)
+		db.session.add(newUser)
+		db.session.commit()
+		return redirect(url_for('user'))
+
+	elif request.method == 'GET':
+		return render_template('user.html', form=form)
