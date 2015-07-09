@@ -20,8 +20,13 @@ class User(db.Model):
 	height = db.Column(db.Integer)
 	goal = db.Column(db.String(255))
 	age = db.Column(db.Integer)
+
+	calories = db.Column(db.Float)
+	protein = db.Column(db.Float)
+	fat = db.Column(db.Float)
+	carbs = db.Column(db.Float)
 	###
-	def __init__(self, email, gender, act, weight, height, goal, age):
+	def __init__(self, email, gender, act, weight, height, goal, age, calories, protein, fat, carbs):
 		self.email = email.title()
 		self.gender = gender.title()
 		self.act = act.title()
@@ -29,3 +34,7 @@ class User(db.Model):
 		self.height = height.title()
 		self.goal = goal.title()
 		self.age = age.title()
+		self.calories = calories
+		self.protein = protein
+		self.fat = fat
+		self.carbs = carbs

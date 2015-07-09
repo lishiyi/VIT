@@ -18,27 +18,44 @@
 {{ form.submit }}
 #}
 
+{{ wtf.quick_form(form) }}
+
+
+<p>A : {{A}}</p>
+<p>B : {{B}}</p>
+<p>C : {{C}}</p>
+<p>D : {{D}}</p>
+<p>BMR : {{BMR}}</p>
+<p>TDEE : {{TDEE}}</p>
+<p>protein : {{protein}}</p>
+<p>fat : {{fat}}</p>
+<p>carbs : {{carbs}}</p>
+
+{#
+
 {{ form.hidden_tag() }}
      
-    {{ form.email.label }}
-    {{ form.email }}         
+    <p>{{ form.email.label }}
+    {{ form.email }}</p>             
      
-    {{ form.gender.label }}
-    {{ form.gender }}
+    <p>{{ form.gender.label }}
+    {{ form.gender }}</p> 
      
-    {{ form.act.label }}
-    {{ form.act }}         
+    <p>{{ form.act.label }}
+    {{ form.act }}</p>          
 
-    {{ form.weight.label }}
-    {{ form.weight }}         
+    <p>{{ form.weight.label }}
+    {{ form.weight }}</p>          
      
-    {{ form.height.label }}
-    {{ form.height }}
+    <p>{{ form.height.label }}
+    {{ form.height }}</p> 
 
-    {{ form.goal.label }}
-    {{ form.goal }}
+    <p>{{ form.goal.label }}
+    {{ form.goal }}</p> 
 
-    {{ form.age.label }}
-    {{ form.age }}
+    <p>{{ form.age.label }}
+    {{ form.age }}</p> 
 
     {{ form.submit }}
+
+    #}

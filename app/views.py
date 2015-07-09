@@ -1,4 +1,5 @@
 import os
+import math
 from flask import render_template, flash, redirect, session, url_for, request, g, send_from_directory, make_response
 from flask.ext.login import login_user, logout_user, current_user, login_required, current_app
 from app import app, db, lm
@@ -45,15 +46,49 @@ def index():
 def user():
 	form = UserForm()
 	if request.method == 'POST':
+
+		A = float(form.weight.data) / 2.2 * 9.99
+		B = float(form.height.data) * 6.25
+		C = int(form.age.data) * 4.92
+		if form.gender.data == '1':
+			D = 5
+		else:
+			D = -161;
+		BMR = math.floor(A + B - C + D)
+		if form.act.data == '1':
+			F = 1.2
+		elif form.act.data == '2':
+			F = 1.4
+		elif form.act.data == '3':
+			F = 1.6
+		else:
+			F = 1.8
+		if form.goal.data == '1':
+			G = 1.2
+		elif form.goal.data == '2':
+			G = 1.0
+		else:
+			G = 0.8
+		TDEE = G * F * BMR #Calorie Target
+		protein = float(form.weight.data)  * 0.88
+		fat = TDEE * 0.25 / 9
+		carbs = (TDEE - protein * 4 - fat * 9) / 4
+
 		newUser = User(email = form.email.data, 
 					   gender = form.gender.data, 
 					   act = form.act.data, 
 					   weight = form.weight.data,
 			           height = form.height.data, 
 			           goal = form.goal.data, 
-			           age = form.age.data)
+			           age = form.age.data,
+			           calories = TDEE,
+			           protein = protein,
+			           fat = fat,
+			           carbs = carbs)
 		db.session.add(newUser)
 		db.session.commit()
+		#return render_template('user.html', form=form, A = A, B = B, C = C, D = D, 
+		#	   BMR = BMR, TDEE = TDEE,  protein = protein, fat = fat, carbs = carbs)
 		return redirect(url_for('user'))
 
 	elif request.method == 'GET':
