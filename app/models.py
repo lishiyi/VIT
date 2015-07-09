@@ -30,10 +30,10 @@ class User(db.Model):
 		self.email = email.title()
 		self.gender = gender.title()
 		self.act = act.title()
-		self.weight = weight.title()
+		self.weight = weight
 		self.height = height.title()
 		self.goal = goal.title()
-		self.age = age.title()
+		self.age = age
 		self.calories = calories
 		self.protein = protein
 		self.fat = fat

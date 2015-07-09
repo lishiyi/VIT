@@ -47,10 +47,10 @@ def user():
 	form = UserForm()
 	if request.method == 'POST':
 
-		A = float(form.weight.data) / 2.2 * 9.99
+		A = form.weight.data / 2.2 * 9.99
 		B = float(form.height.data) * 6.25
-		C = int(form.age.data) * 4.92
-		if form.gender.data == '1':
+		C = form.age.data * 4.92
+		if form.gender.data == "Male":
 			D = 5
 		else:
 			D = -161;
@@ -63,14 +63,14 @@ def user():
 			F = 1.6
 		else:
 			F = 1.8
-		if form.goal.data == '1':
+		if form.goal.data == "Gain":
 			G = 1.2
-		elif form.goal.data == '2':
+		elif form.goal.data == "Maintain":
 			G = 1.0
 		else:
 			G = 0.8
 		TDEE = G * F * BMR #Calorie Target
-		protein = float(form.weight.data)  * 0.88
+		protein = form.weight.data  * 0.88
 		fat = TDEE * 0.25 / 9
 		carbs = (TDEE - protein * 4 - fat * 9) / 4
 
