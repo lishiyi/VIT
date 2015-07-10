@@ -74,6 +74,11 @@ def user():
 		fat = TDEE * 0.25 / 9
 		carbs = (TDEE - protein * 4 - fat * 9) / 4
 
+		session['calories'] = TDEE
+		session['protein'] = protein
+		session['fat'] = fat
+		session['carbs'] = carbs
+
 		newUser = User(email = form.email.data, 
 					   gender = form.gender.data, 
 					   act = form.act.data, 
@@ -87,9 +92,11 @@ def user():
 			           carbs = carbs)
 		db.session.add(newUser)
 		db.session.commit()
-		#return render_template('user.html', form=form, A = A, B = B, C = C, D = D, 
+		#return render_template('index.html', form=form, A = A, B = B, C = C, D = D, 
 		#	   BMR = BMR, TDEE = TDEE,  protein = protein, fat = fat, carbs = carbs)
-		return redirect(url_for('user'))
+		#return redirect(url_for('user'))
+		return render_template('index.html', calories = TDEE,  protein = protein, 
+			fat = fat, carbs = carbs, gender = form.gender.data, age = form.age.data)
 
 	elif request.method == 'GET':
 		return render_template('user.html', form=form)

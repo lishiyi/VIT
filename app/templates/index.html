@@ -38,8 +38,13 @@
         </div>
         <div class="col-xs-8>">
             <br />
+
+        <p>{"nutrientTargets": {"calories": {{calories}}, "protein": {{protein}}, "fat": {{fat}}, "carbs": {{carbs}}, "name": "sebastian@vit.fitness","gender": "{{gender}}", "age": {{age}} }}</p>
+
+        <button id="clickJSON3">Use UserInput</button>
         <button id="clickJSON">Use Sample Target 1 for Test</button>
         <button id="clickJSON2">Use Sample Target 2 for Test</button>
+
             <form class="form-inline" align="center">
                 <label>Generation:</label>
                 <input class="generation form-control input-sm" type="text" style="width: 50px; text-align: center; margin-right: 20px; margin-left: 10px" />
@@ -73,22 +78,47 @@
         <p><em>Warning:</em> This is still very experimental. I've tried it with my own recipe and one other and it has worked, but I haven't double checked the numbers.</p>
         <textarea id="inputJSON" rows="2" style="width:100%">
         </textarea>
-
-        
+    </div>
+ {#      
 <!--        <form>
              <input type="file" id="inputJSON" />
              <input type="submit" value="Submit" />
-        </form>                                                             -->
-    </div>
 
-    <button onclick="sb()">Get JSON </button>
+                 var calories = {{ calories | tojson | safe }};
+    var protein =  {{ protein | tojson | safe }};
+    var fat = {{ fat | tojson | safe }};
+    var carbs = {{ carbs | tojson | safe }};
+
+        var UserInput = function() {
+
+        this.calories = {{calories}} || 0;
+        this.protein = {{protein}} || 0;
+        this.fat = {{fat}} || 0;
+        this.carbs = {{carbs}} || 0;
+
+        this.gender = {{gender}} || "Male";
+        this.age = {{age}} || 25;
+    };
+
+        
+        </form>    
+
+                                                                 -->#}
+
+    <script type="text/javascript">
+
+    var userJsonToRun = {"nutrientTargets": { "calories": {{calories}},
+     "protein": {{protein}}, "fat": {{fat}}, 
+     "carbs": {{carbs}}, "name": "sebastian@vit.fitness",
+     "gender": {{gender}}, "age": {{age}} }};
+
+    </script>
 
     <div id="ingredientTableJson" class="col-xs-4"></div>
 
     <script type="text/javascript" src="js/defaultJson.js"></script>
 
         <div class="container">
-
         <h2>What is this?</h2>
         <p>Genetic Soylent is an attempt to automatically create a Soylent recipe given a list of ingredients and a target nutrient profile.</p>
         <p>You can play with it by pressing <i class="icon-step-forward"></i> to step to the next generation, <i class="icon-play"></i> to step to next generations automatically and <i class="icon-refresh"></i> to reset the simulation.</p>

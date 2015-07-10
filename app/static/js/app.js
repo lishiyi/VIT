@@ -80,6 +80,17 @@ $(function(){
         testGeneticSoylent.render();
     });
 
+    $('#clickJSON3').click(function(){
+        var jsonToRun = userJsonToRun;
+        testGeneticSoylent = new GeneticSoylent({
+                    ingredients: convertJSONIngredientsToGeneticIngredients(jsonToRun.ingredients),
+                    targetNutrients: convertJSONNutritionToGeneticNutrition(jsonToRun.nutrientTargets)
+        });
+
+        testGeneticSoylent.reset();
+        testGeneticSoylent.render();
+    });
+
     function convertJSONIngredientsToGeneticIngredients(ingredients0){
 
         //document.write("<script type="text/javascript" src="js/defaultJson.js"></script>");
