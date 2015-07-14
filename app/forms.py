@@ -7,10 +7,10 @@ from models import db, User
 
 class UserForm(Form):
 	email = StringField("Email",  [validators.Required("Please enter your email.")])
-	gender = RadioField("Gender", choices=[("Male","Male"),("Female","Female")])
-	act = RadioField("Which of these describes your daily activity?", \
-		     choices=[(1,"Sedentary"),(2,"Low"),\
-		     (3,"Active"),(4,"Very Active")])
+	gender = RadioField("Gender", choices=[("Male","Male"),("Female","Female")], default = "Male")
+	act = RadioField("Which of these describes your daily activity?", 
+		     choices=[(1,"Sedentary"),(2,"Low"),
+		     (3,"Active"),(4,"Very Active")], default = 3)
 	weight = FloatField("Weight(lb)",  [validators.Required("Please enter your weight(lb).")])
 	#height = FloatField("Height(cm)",  [validators.Required("Please enter your height(cm).")])
 
@@ -20,7 +20,7 @@ class UserForm(Form):
 		(172.7, "5\'8 - 172.7cm"),(175.2, "5\'9 - 175.2cm"),(177.8, "5\'10 - 177.8cm"),
 		(180.3, "5\'11 - 180.3cm"), 
 		(182.8, "6\'0 - 182.8cm"),(185.4, "6\'1 - 185.4cm"),(187.9, "6\'2 - 187.9cm"),
-		(190.5, "6\'3 - 190.5cm"),(193.0, "6\'4 - 193.0cm")])
+		(190.5, "6\'3 - 190.5cm"),(193.0, "6\'4 - 193.0cm")], default = 180.3)
 
 	goal = RadioField("What are your weight goals?", \
 		     choices=[("Gain","Gain Weight"),("Maintain","Maintain Weight"),\

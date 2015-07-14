@@ -53,7 +53,7 @@ def user():
 		if form.gender.data == "Male":
 			D = 5
 		else:
-			D = -161;
+			D = -161
 		BMR = math.floor(A + B - C + D)
 		if form.act.data == '1':
 			F = 1.2
@@ -96,7 +96,8 @@ def user():
 		#	   BMR = BMR, TDEE = TDEE,  protein = protein, fat = fat, carbs = carbs)
 		#return redirect(url_for('user'))
 		return render_template('index.html', calories = TDEE,  protein = protein, 
-			fat = fat, carbs = carbs, gender = form.gender.data, age = form.age.data)
+			fat = fat, carbs = carbs, gender = form.gender.data, age = form.age.data,
+			email = form.email.data)
 
 	elif request.method == 'GET':
 		return render_template('user.html', form=form)
