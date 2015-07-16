@@ -44,6 +44,18 @@ $(function(){
         testGeneticSoylent.mutationMultiplier = Number($(this).val());
     });
 
+    $('#inputJSON').val(function(){
+        var jsonToRun = $.parseJSON(this.value);
+        if(!jsonToRun.ingredients) { jsonToRun.ingredients = {"ingredients": [{"Nothing":""},]}  };
+        testGeneticSoylent = new GeneticSoylent({
+                    ingredients: convertJSONIngredientsToGeneticIngredients(jsonToRun.ingredients),
+                    targetNutrients: convertJSONNutritionToGeneticNutrition(jsonToRun.nutrientTargets)
+        });
+
+        testGeneticSoylent.reset();
+        testGeneticSoylent.render();
+    });
+
     $('#inputJSON').change(function(){
         var jsonToRun = $.parseJSON(this.value);
         if(!jsonToRun.ingredients) { jsonToRun.ingredients = {"ingredients": [{"Nothing":""},]}  };

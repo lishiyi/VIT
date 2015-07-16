@@ -63,7 +63,7 @@
                 <input class="death-rate form-control input-sm" type="text" style="width: 50px; text-align: center" value="0.3" />
             </form>
 
-            <button id="clickJSON3">Use UserInput</button>
+            <button id="clickJSON3">Use UserInput(Beta)</button>
             <button id="clickJSON">Use Sample Target 1 for Test</button>
             <button id="clickJSON2">Use Sample Target 2 for Test</button>
 
@@ -77,20 +77,15 @@
     </div>
 
     <div class="container">
-        {% if calories %}
-        <h2>Choose Your Own Recipe. Copy and paste it into the box:</h2>
-        {% else %}
+
         <h2>Choose Your Own Recipe.</h2>
-        {% endif %}
+        <h4>By our calculation, your target is shown as below.</h4>
+
         <p>{"nutrientTargets": {"calories": {{calories}}, "protein": {{protein}}, "fat": {{fat}}, "carbs": {{carbs}}, "name": "{{email}}","gender": "{{gender}}", "age": {{age}} }}</p>
         <textarea id="inputJSON" rows="2" style="width:100%">
         {"nutrientTargets": {"calories": {{calories}}, "protein": {{protein}}, "fat": {{fat}}, "carbs": {{carbs}}, "name": "{{email}}","gender": "{{gender}}", "age": {{age}} }}
         </textarea>
-{#
-        <textarea id="userJsonToRun" rows="3" style="width:100%">
-        {"nutrientTargets": {"calories": {{calories}}, "protein": {{protein}}, "fat": {{fat}}, "carbs": {{carbs}}, "name": "{{email}}","gender": "{{gender}}", "age": {{age}} }}
-        </textarea>
- #}       
+      
     </div>
  {#      
 <!--        <form>
