@@ -84,7 +84,13 @@
         {% endif %}
         <p>{"nutrientTargets": {"calories": {{calories}}, "protein": {{protein}}, "fat": {{fat}}, "carbs": {{carbs}}, "name": "{{email}}","gender": "{{gender}}", "age": {{age}} }}</p>
         <textarea id="inputJSON" rows="2" style="width:100%">
+        {"nutrientTargets": {"calories": {{calories}}, "protein": {{protein}}, "fat": {{fat}}, "carbs": {{carbs}}, "name": "{{email}}","gender": "{{gender}}", "age": {{age}} }}
         </textarea>
+{#
+        <textarea id="userJsonToRun" rows="3" style="width:100%">
+        {"nutrientTargets": {"calories": {{calories}}, "protein": {{protein}}, "fat": {{fat}}, "carbs": {{carbs}}, "name": "{{email}}","gender": "{{gender}}", "age": {{age}} }}
+        </textarea>
+ #}       
     </div>
  {#      
 <!--        <form>
@@ -116,7 +122,7 @@
 
     var userJsonToRun = {"nutrientTargets": { "calories": {{calories}},
      "protein": {{protein}}, "fat": {{fat}}, 
-     "carbs": {{carbs}}, "name": "sebastian@vit.fitness",
+     "carbs": {{carbs}}, "name": "{{email}}",
      "gender": {{gender}}, "age": {{age}} }};
 
     </script>

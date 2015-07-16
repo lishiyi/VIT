@@ -81,7 +81,8 @@ $(function(){
     });
 
     $('#clickJSON3').click(function(){
-        var jsonToRun = userJsonToRun;
+        var jsonToRun = $('#inputJSON').value;
+        if(!jsonToRun.ingredients) { jsonToRun.ingredients = {"ingredients": [{"Nothing":""},]}  };
         testGeneticSoylent = new GeneticSoylent({
                     ingredients: convertJSONIngredientsToGeneticIngredients(jsonToRun.ingredients),
                     targetNutrients: convertJSONNutritionToGeneticNutrition(jsonToRun.nutrientTargets)
@@ -90,7 +91,19 @@ $(function(){
         testGeneticSoylent.reset();
         testGeneticSoylent.render();
     });
+/*
+    $('#userJsonToRun').change(function(){
+        var jsonToRun = $.parseJSON(this.value);
+        if(!jsonToRun.ingredients) { jsonToRun.ingredients = {"ingredients": [{"Nothing":""},]}  };
+        testGeneticSoylent = new GeneticSoylent({
+                    ingredients: convertJSONIngredientsToGeneticIngredients(jsonToRun.ingredients),
+                    targetNutrients: convertJSONNutritionToGeneticNutrition(jsonToRun.nutrientTargets)
+        });
 
+        testGeneticSoylent.reset();
+        testGeneticSoylent.render();
+    });
+*/
     function convertJSONIngredientsToGeneticIngredients(ingredients0){
 
         //document.write("<script type="text/javascript" src="js/defaultJson.js"></script>");
