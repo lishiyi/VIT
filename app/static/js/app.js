@@ -54,6 +54,13 @@ $(function(){
 
         testGeneticSoylent.reset();
         testGeneticSoylent.render();
+
+        $('.start-genetic-algorithm').hide();
+        $('.pause-genetic-algorithm').show();
+        testGeneticSoylent.autoGenerate = true;
+        testGeneticSoylent.nextGeneration();
+        return false;
+
     });
 
     $('#inputJSON').change(function(){
