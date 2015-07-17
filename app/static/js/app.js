@@ -54,12 +54,11 @@ $(function(){
 
         testGeneticSoylent.reset();
         testGeneticSoylent.render();
-
+        //Will run antomatically when user's information completed.
         $('.start-genetic-algorithm').hide();
         $('.pause-genetic-algorithm').show();
         testGeneticSoylent.autoGenerate = true;
         testGeneticSoylent.nextGeneration();
-        return false;
 
     });
 
