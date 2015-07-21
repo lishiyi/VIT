@@ -45,7 +45,8 @@
             <br />
 
             <form class="form-inline" align="center">
-                <a href="{{url_for('user')}}"><i class="icon-user">User</i></a>
+                <a href="{{url_for('user')}}"><i class="icon-user icon-large">User</i></a>
+
                 <label>&nbsp;&nbsp;&nbsp;&nbsp;Generation:</label>
                 <input class="generation form-control input-sm" type="text" style="width: 50px; text-align: center; margin-right: 20px; margin-left: 10px" />
                 <a class="btn btn-primary start-genetic-algorithm" href="#"><i class="icon-play"></i></a>
@@ -63,7 +64,7 @@
                 <label style="margin-left: 20px;">Death rate:</label>
                 <input class="death-rate form-control input-sm" type="text" style="width: 50px; text-align: center" value="0.3" />
             </form>
-
+{#            <div class="calculating"><i class="icon-spinner icon-spin icon-large"></i>Calculating...</div>    #}
             <button id="clickJSON3">Use UserInput(Beta)</button>
             <button id="clickJSON">Use Sample Target 1 for Test</button>
             <button id="clickJSON2">Use Sample Target 2 for Test</button>

@@ -2,9 +2,17 @@
  * Controllers for the buttons and variables.
  */
 $(function(){
+/*
+    $(document).ready(function(){
+
+        $('.calculating').hide();
+    });
+    
+*/
     $('.start-genetic-algorithm').click(function(){
         $(this).hide();
         $('.pause-genetic-algorithm').show();
+        //$('.calculating').show();
         testGeneticSoylent.autoGenerate = true;
         testGeneticSoylent.nextGeneration();
         return false;
@@ -13,6 +21,7 @@ $(function(){
     $('.pause-genetic-algorithm').click(function(){
         testGeneticSoylent.autoGenerate = false;
         $(this).hide();
+        //$('.calculating').hide();
         $('.start-genetic-algorithm').show();
         return false;
     });
@@ -57,6 +66,7 @@ $(function(){
         //Will run antomatically when user's information completed.
         $('.start-genetic-algorithm').hide();
         $('.pause-genetic-algorithm').show();
+        //$('.calculating').show();
         testGeneticSoylent.autoGenerate = true;
         testGeneticSoylent.nextGeneration();
 

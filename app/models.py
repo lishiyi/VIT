@@ -1,8 +1,8 @@
 from app import db, app
 from flask.ext.sqlalchemy import SQLAlchemy
 from datetime import datetime
-import bleach
-from markdown import markdown
+#import bleach
+#from markdown import markdown
 import flask.ext.whooshalchemy as whooshalchemy
 
 db = SQLAlchemy()
@@ -13,13 +13,14 @@ class User(db.Model):
 	
 	__tablename__ = 'user'
 	user_id = db.Column(db.Integer, primary_key = True)
-	email = db.Column(db.String(255), unique=True)
+	email = db.Column(db.String(255), unique = True)
 	gender = db.Column(db.String(255))
 	act = db.Column(db.String(255))
 	weight = db.Column(db.Float)
 	height = db.Column(db.Integer)
 	goal = db.Column(db.String(255))
 	age = db.Column(db.Integer)
+	timestamp = db.Column(db.DateTime, index = True, default = datetime.now)
 
 	calories = db.Column(db.Float)
 	protein = db.Column(db.Float)
