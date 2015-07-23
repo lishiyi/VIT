@@ -29,3 +29,8 @@ class UserForm(Form):
 	age = IntegerField("Age",  [validators.Required("Please enter your age.")], default = 22)
 
 	submit = SubmitField('Submit')
+
+class IngredientsForm(Form):
+	json = TextField("json",  [validators.Length(min=4, max=200)] )
+
+	submit = SubmitField('Submit')

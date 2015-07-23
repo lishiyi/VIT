@@ -1,3 +1,5 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
 <html>
 <head>
     <title>Vit Meals - Calculator</title>
@@ -37,7 +39,7 @@
 </head>
 <body> 
 
-{# http://flask.pocoo.org/docs/0.10/patterns/jquery/ #}
+{# http://flask.pocoo.org/docs/0.10/patterns/jquery/ 
     <script type="text/javascript">
             $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
@@ -56,6 +58,8 @@
    <span id="result">?</span></p>
 <p><a href=# id="calculate">calculate server side</a></p>
 </div>
+
+#}
 
     <script type="text/javascript" src="static/js/GeneticSoylent.js"></script>
     <script type="text/javascript" src="static/js/Recipe.js"></script>
@@ -156,8 +160,20 @@
     </script>
     <script type="text/javascript" src="js/defaultJson.js"></script> #}   
 
+        <p></p>
         <div id="ingredientTableJson" class="col-xs-4"></div>
 
+        <div class="col-xs-4">
+        {{ wtf.quick_form(ingredientform) }}
+        </textarea>
+        </div>
+
+        <div class="col-xs-4">
+        <p>JSON Here!!!!!!!!!</p>
+        {{ json }}
+        </textarea>
+        </div>
+        <p></p>
         <div class="container">
         <h2>What is this?</h2>
         <p>Genetic Soylent is an attempt to automatically create a Soylent recipe given a list of ingredients and a target nutrient profile.</p>

@@ -3,7 +3,7 @@ import math
 from flask import render_template, flash, redirect, session, url_for, request, g, send_from_directory, make_response, jsonify
 from flask.ext.login import login_user, logout_user, current_user, login_required, current_app
 from app import app, db, lm
-from forms import UserForm
+from forms import UserForm, IngredientsForm
 from models import User
 ######ADDED########################################
 from flaskext.mysql import MySQL
@@ -46,15 +46,28 @@ def add_numbers():
 @app.route('/index', methods=['GET', 'POST'])
 #@login_required
 def index():
+
+	ingredientform = IngredientsForm()
+	#age = request.args.get('age', 0, type = int)
 	#if email:
 	#	sb = 1
 	#else:
-	sb = 0
-	return render_template('index.html', sb = sb)
+	#sb = age
+	if request.method == 'POST':
+
+		json = ingredientform.json.data
+		return render_template('index.html', ingredientform = ingredientform, json = json)
+
+	elif request.method == 'GET':
+		return render_template('index.html', ingredientform = ingredientform)
+	
 
 @app.route('/user', methods=['GET', 'POST'])
 def user():
 	form = UserForm()
+	ingredientform = IngredientsForm()
+	
+
 	if request.method == 'POST':
 
 		A = form.weight.data / 2.2 * 9.99
@@ -84,10 +97,10 @@ def user():
 		fat = TDEE * 0.25 / 9
 		carbs = (TDEE - protein * 4 - fat * 9) / 4
 
-		session['calories'] = TDEE
-		session['protein'] = protein
-		session['fat'] = fat
-		session['carbs'] = carbs
+		#session['calories'] = TDEE
+		#session['protein'] = protein
+		#session['fat'] = fat
+		#session['carbs'] = carbs
 
 		newUser = User(email = form.email.data, 
 					   gender = form.gender.data, 
@@ -103,12 +116,14 @@ def user():
 		db.session.add(newUser)
 		db.session.commit()
 
+		json = ingredientform.json.data
+
 		#return render_template('index.html', form=form, A = A, B = B, C = C, D = D, 
 		#	   BMR = BMR, TDEE = TDEE,  protein = protein, fat = fat, carbs = carbs)
 		#return redirect(url_for('user'))
 		return render_template('index.html', calories = TDEE,  protein = protein, 
 			fat = fat, carbs = carbs, gender = form.gender.data, age = form.age.data,
-			email = form.email.data)
+			email = form.email.data, ingredientform = ingredientform, json = json)
 
 	elif request.method == 'GET':
 		return render_template('user.html', form=form)
