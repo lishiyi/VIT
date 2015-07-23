@@ -1,6 +1,6 @@
 import os
 import math
-from flask import render_template, flash, redirect, session, url_for, request, g, send_from_directory, make_response
+from flask import render_template, flash, redirect, session, url_for, request, g, send_from_directory, make_response, jsonify
 from flask.ext.login import login_user, logout_user, current_user, login_required, current_app
 from app import app, db, lm
 from forms import UserForm
@@ -35,12 +35,22 @@ def internal_error(error):
     db.session.rollback()
     return render_template('500.html'), 500
 
+@app.route('/_add_numbers')
+def add_numbers():
+    a = request.args.get('a', 0, type = int)
+    b = request.args.get('b', 0, type = int)
+    return jsonify(result = a + b)
+
 ############################################################################		
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 #@login_required
 def index():
-	return render_template('index.html')
+	#if email:
+	#	sb = 1
+	#else:
+	sb = 0
+	return render_template('index.html', sb = sb)
 
 @app.route('/user', methods=['GET', 'POST'])
 def user():
@@ -92,6 +102,7 @@ def user():
 			           carbs = carbs)
 		db.session.add(newUser)
 		db.session.commit()
+
 		#return render_template('index.html', form=form, A = A, B = B, C = C, D = D, 
 		#	   BMR = BMR, TDEE = TDEE,  protein = protein, fat = fat, carbs = carbs)
 		#return redirect(url_for('user'))

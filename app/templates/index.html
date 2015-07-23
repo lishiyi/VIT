@@ -27,13 +27,40 @@
             position: relative;
             left: 150px;
         }
+
+        div.cc {
+            position: relative;
+            left: 150px;
+        }
     </style>
 
 </head>
-<body>
+<body> 
+
+{# http://flask.pocoo.org/docs/0.10/patterns/jquery/ #}
+    <script type="text/javascript">
+            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+
+    <script type=text/"javascript">
+
+    </script>
+
+
+<p>{{sb}} is a big sb!</p>
+
+<div class = 'cc'>
+<h1>jQuery Example</h1>
+<p><input type=text size=5 name=a> +
+   <input type=text size=5 name=b> =
+   <span id="result">?</span></p>
+<p><a href=# id="calculate">calculate server side</a></p>
+</div>
+
     <script type="text/javascript" src="static/js/GeneticSoylent.js"></script>
     <script type="text/javascript" src="static/js/Recipe.js"></script>
     <script type="text/javascript" src="static/js/app.js"></script>
+    <script type="text/javascript" src="static/js/test.js"></script>
 
     <div class="row">
         <div class="col-xs-4">
@@ -127,12 +154,9 @@
      "gender": {{gender}}, "age": {{age}} }};
 
     </script>
-#}
+    <script type="text/javascript" src="js/defaultJson.js"></script> #}   
 
-
-    <div id="ingredientTableJson" class="col-xs-4"></div>
-
-    <script type="text/javascript" src="js/defaultJson.js"></script>
+        <div id="ingredientTableJson" class="col-xs-4"></div>
 
         <div class="container">
         <h2>What is this?</h2>

@@ -109,7 +109,8 @@ $(function(){
     });
 
     $('#clickJSON3').click(function(){
-        var jsonToRun = $('#inputJSON').value;
+        var jsonToRun = $.parseJSON($('#inputJSON').value);
+        //var jsonToRun = $('#inputJSON').value;
         if(!jsonToRun.ingredients) { jsonToRun.ingredients = {"ingredients": [{"Nothing":""},]}  };
         testGeneticSoylent = new GeneticSoylent({
                     ingredients: convertJSONIngredientsToGeneticIngredients(jsonToRun.ingredients),
@@ -1823,4 +1824,17 @@ $(function(){
     });
 
     testGeneticSoylent.render();
+});
+
+
+$(function() {
+  $('a#calculate').bind('click', function() {
+    $.getJSON($SCRIPT_ROOT + '/_add_numbers', {
+      a: $('input[name="a"]').val(),
+      b: $('input[name="b"]').val()
+    }, function(data) {
+      $("#result").text(data.result);
+    });
+    return false;
+  });
 });
