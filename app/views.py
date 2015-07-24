@@ -102,6 +102,8 @@ def user():
 		#session['fat'] = fat
 		#session['carbs'] = carbs
 
+		json = ingredientform.json.data
+
 		newUser = User(email = form.email.data, 
 					   gender = form.gender.data, 
 					   act = form.act.data, 
@@ -112,11 +114,20 @@ def user():
 			           calories = TDEE,
 			           protein = protein,
 			           fat = fat,
-			           carbs = carbs)
-		db.session.add(newUser)
-		db.session.commit()
+			           carbs = carbs,
+			           json = json)
 
-		json = ingredientform.json.data
+		if json:
+			db.session.add(newUser)
+			db.session.commit()
+
+
+		#json = ingredientform.json.data
+
+		#if ingredientform.validate_on_submit():
+		#g.user.json = form.json.data
+		#db.session.add(g.user)
+		#db.session.commit()
 
 		#return render_template('index.html', form=form, A = A, B = B, C = C, D = D, 
 		#	   BMR = BMR, TDEE = TDEE,  protein = protein, fat = fat, carbs = carbs)

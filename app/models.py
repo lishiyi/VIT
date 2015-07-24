@@ -21,13 +21,14 @@ class User(db.Model):
 	goal = db.Column(db.String(255))
 	age = db.Column(db.Integer)
 	timestamp = db.Column(db.DateTime, index = True, default = datetime.now)
+	json = db.Column(db.String(255))
 
 	calories = db.Column(db.Float)
 	protein = db.Column(db.Float)
 	fat = db.Column(db.Float)
 	carbs = db.Column(db.Float)
 	###
-	def __init__(self, email, gender, act, weight, height, goal, age, calories, protein, fat, carbs):
+	def __init__(self, email, gender, act, weight, height, goal, age, calories, protein, fat, carbs, json):
 		self.email = email.title()
 		self.gender = gender.title()
 		self.act = act.title()
@@ -39,3 +40,4 @@ class User(db.Model):
 		self.protein = protein
 		self.fat = fat
 		self.carbs = carbs
+		self.json = json.title()
