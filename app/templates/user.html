@@ -21,16 +21,19 @@
 </head>
 <body>
 
+
+
+<div class="col-xs-2"></div>
+<div class="col-xs-8">
 <h2>Please input your information</h2>
-
-<div class="form">
-{{ wtf.quick_form(form) }}
-</div>
-
 <p><a href="{{url_for('index')}}"><i class="icon-laptop icon-large">Go to the calculator</i></a>
     &nbsp;&nbsp;&nbsp;&nbsp;
    <a href="{{url_for('user')}}"><i class="icon-user icon-large">User</i></a>
 </p>
+{{ wtf.quick_form(form) }}
+</div>
+
+
 
 </body>
 </html>

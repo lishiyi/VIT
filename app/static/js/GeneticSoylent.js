@@ -279,7 +279,26 @@ GeneticSoylent.prototype.render = function() {
         nutrientKeys: _.keys(this.targetNutrients)
     }));
 
-    $('#ingredientTableJsonVal').val("sbsbsbsbsbsbsbsbsbsbsb");
+    var ingredientHtmlJsonVal = _.template([
+        '{',
+        '<% _.each(ingredients, function(ingredient, idx) { %>',
+            '"<%= ingredient.name %>"',
+            ': ',
+            '<%= Math.round(amounts[idx]) %>',
+            ',',
+        '<% }); %>',
+        '}'
+    ].join(''));
+
+    $('#ingredientTableJsonVal').text(ingredientHtmlJsonVal({
+        total: this.recipes[0].nutrientTotals,
+        amounts: this.recipes[0].ingredientAmounts,
+        ingredients: this.ingredients,
+        targetProfile: this.targetNutrients,
+        completenessScore: this.recipes[0].completenessScore,
+        nutrientCompleteness: this.recipes[0].nutrientCompleteness,
+        nutrientKeys: _.keys(this.targetNutrients)
+    }));
   
 
 

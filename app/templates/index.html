@@ -67,9 +67,11 @@
     <script type="text/javascript" src="static/js/Recipe.js"></script>
     <script type="text/javascript" src="static/js/app.js"></script>
 
+{#
 <script type=text/javascript>
   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
+
 <script type=text/javascript>
   $(function() {
     $('a#calculate').bind('click', function() {
@@ -77,7 +79,7 @@
         a: $('input[name="a"]').val(),
         b: $('input[name="b"]').val()
       }, function(data) {
-        $("#result").text(data.result);
+        $("#result").text(data.ingredients);
       });
       return false;
     });
@@ -92,6 +94,28 @@
 <p><a href=# id="calculate">calculate server side</a>
 </p></div>
 
+
+<script type=text/javascript>
+  $(function() {
+    $('a#calculate').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/_json', {
+        ingredients: $('textarea[name="a"]').val()
+      }, function(data) {
+        $("#result").text(data.ingredients);
+      });
+      return false;
+    });
+  });
+</script>
+
+<div class="cc">
+<h1>jQuery Example</h1>
+<p><textarea name=a id="ingredientTableJsonVal" rows="2" style="width:100%"></textarea></p>
+<p><span id="result">?</span></p>
+<p><a href=# id="calculate">calculate server side</a>
+</p></div>
+
+#}
 
 
     <div class="row">
@@ -188,14 +212,22 @@
     <script type="text/javascript" src="js/defaultJson.js"></script>--> #}   
 
     <p></p>
-    <div id="ingredientTableJson" class="col-xs-4"></div>
+    <div class="container">
+    <h2>Ingredients table</h2>
+        <h4>Click Submit button to save your data.</h4>
+    <form method="POST"> 
+{{ ingredientform.json(placeholder="json", id = "ingredientTableJsonVal", rows="3", style="width:100%") }}
+{{ ingredientform.submit() }}
+</form>
 
-    <div class="col-xs-4">
+ </div>
+
+
 {# <!--       <textarea id="ingredientform" name = "ingredientform" rows="10">
         <div id="ingredientTableJson" class="col-xs-4"></div>
     </textarea>     
      {{ ingredientform.json }}
-    {{ ingredientform.submit }}      --> 
+    {{ ingredientform.submit }}      
     {{ wtf.quick_form(ingredientform) }} 
 
     {{ wtf.quick_form(ingredientform) }}
@@ -215,11 +247,19 @@
     {{ json }}
     </div>
 
-<p>{{hiddenform}}</p>     #}
+<p>{{hiddenform}}</p>   -->   #}
 
-{{ wtf.quick_form(ingredientform) }} 
 
-{# <!--
+
+
+
+
+
+{# 
+
+{{ ingredientform.json(placeholder="json", id = "ingredientTableJsonVal") }}
+{{ ingredientform.submit }}
+<!--
 
 <div class="form-group">
 <input type="hidden" name="hiddenform" class="text-field form-control validate-field required" data-validation-type="neighborhood" id="nbhd" placeholder="Pick One" value="Pick One">
@@ -233,7 +273,7 @@
 --> #}
 
     <p></p>
-    <div class="container">
+    <div class="container col-xs-12">
     <h2>What is this?</h2>
     <p>Genetic Soylent is an attempt to automatically create a Soylent recipe given a list of ingredients and a target nutrient profile.</p>
     <p>You can play with it by pressing <i class="icon-step-forward"></i> to step to the next generation, <i class="icon-play"></i> to step to next generations automatically and <i class="icon-refresh"></i> to reset the simulation.</p>

@@ -41,6 +41,11 @@ def add_numbers():
     b = request.args.get('b', 0, type = int)
     return jsonify(result = a + b)
 
+@app.route('/_json')
+def json():
+    ingredients = request.args.get('ingredients', 0, type = int)
+    return jsonify(ingredients)
+
 ############################################################################		
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -54,12 +59,8 @@ def index():
 	#else:
 	#sb = age
 	if request.method == 'POST':
-
-		json = ingredientform.json.data
-		hiddenform = ingredientform.hidden.data
 		
-		return render_template('index.html', ingredientform = ingredientform, json = json,
-			hiddenform = hiddenform)
+		return render_template('index.html', ingredientform = ingredientform)
 
 	elif request.method == 'GET':
 		return render_template('index.html', ingredientform = ingredientform)
@@ -68,7 +69,6 @@ def index():
 @app.route('/user', methods=['GET', 'POST'])
 def user():
 	form = UserForm()
-	ingredientform = IngredientsForm()
 	#hform = 
 	
 
@@ -105,24 +105,27 @@ def user():
 		#session['protein'] = protein
 		#session['fat'] = fat
 		#session['carbs'] = carbs
-
+		
+		ingredientform = IngredientsForm()
 		json = ingredientform.json.data
-		hiddenform = ingredientform.hidden.data
+		#hiddenform = ingredientform.hidden.data
 
-		newUser = User(email = form.email.data, 
-					   gender = form.gender.data, 
-					   act = form.act.data, 
-					   weight = form.weight.data,
-			           height = form.height.data, 
-			           goal = form.goal.data, 
-			           age = form.age.data,
-			           calories = TDEE,
-			           protein = protein,
-			           fat = fat,
-			           carbs = carbs,
-			           json = json)
+
 
 		if json:
+			newUser = User(email = form.email.data, 
+			gender = form.gender.data, 
+			act = form.act.data, 
+			weight = form.weight.data,
+			height = form.height.data, 
+			goal = form.goal.data, 
+			age = form.age.data,
+			calories = TDEE,
+			protein = protein,
+			fat = fat,
+			carbs = carbs,
+			json = json)
+
 			db.session.add(newUser)
 			db.session.commit()
 
@@ -138,8 +141,7 @@ def user():
 		#return redirect(url_for('user'))
 		return render_template('index.html', calories = TDEE,  protein = protein, 
 			fat = fat, carbs = carbs, gender = form.gender.data, age = form.age.data,
-			email = form.email.data, ingredientform = ingredientform, json = json,
-			hiddenform = hiddenform)
+			email = form.email.data, ingredientform = ingredientform)
 
 	elif request.method == 'GET':
 		return render_template('user.html', form=form)
