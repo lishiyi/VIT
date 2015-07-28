@@ -1,12 +1,12 @@
 from flask.ext.wtf import Form
 from wtforms import TextField, StringField, PasswordField, BooleanField, SubmitField, \
-FloatField, IntegerField, validators, TextAreaField, RadioField, SelectField
+FloatField, IntegerField, validators, TextAreaField, RadioField, SelectField, HiddenField
 from wtforms.validators import Required, Email
 
 from models import db, User
 
 class UserForm(Form):
-	email = StringField("Email",  [validators.Required("Please enter your email.")], default = "test@gmail.com")
+	email = StringField("Email",  validators = [Required("Please enter your email."), Email()], default = "test@gmail.com")
 	gender = RadioField("Gender", choices=[("Male","Male"),("Female","Female")], default = "Male")
 	act = RadioField("Which of these describes your daily activity?", 
 		     choices=[(1,"Sedentary"),(2,"Low"),
@@ -32,5 +32,5 @@ class UserForm(Form):
 
 class IngredientsForm(Form):
 	json = TextField("json",  [validators.Length(min=4, max=200)] )
-
+	hidden = HiddenField("json",  [validators.Length(min=4, max=200)] )
 	submit = SubmitField('Submit')

@@ -39,7 +39,9 @@
 </head>
 <body> 
 
-{# http://flask.pocoo.org/docs/0.10/patterns/jquery/ 
+<script type="text/javascript">
+</script>
+{# <!-- http://flask.pocoo.org/docs/0.10/patterns/jquery/ 
     <script type="text/javascript">
             $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
@@ -59,12 +61,38 @@
 <p><a href=# id="calculate">calculate server side</a></p>
 </div>
 
-#}
+--> #}
 
     <script type="text/javascript" src="static/js/GeneticSoylent.js"></script>
     <script type="text/javascript" src="static/js/Recipe.js"></script>
     <script type="text/javascript" src="static/js/app.js"></script>
-    <script type="text/javascript" src="static/js/test.js"></script>
+
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<script type=text/javascript>
+  $(function() {
+    $('a#calculate').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/_add_numbers', {
+        a: $('input[name="a"]').val(),
+        b: $('input[name="b"]').val()
+      }, function(data) {
+        $("#result").text(data.result);
+      });
+      return false;
+    });
+  });
+</script>
+
+<div class="cc">
+<h1>jQuery Example</h1>
+<p><input type=text size=5 name=a> +
+   <input type=text size=5 name=b> =
+   <span id="result">?</span></p>
+<p><a href=# id="calculate">calculate server side</a>
+</p></div>
+
+
 
     <div class="row">
         <div class="col-xs-4">
@@ -75,28 +103,28 @@
         <div class="col-xs-8>">
             <br />
 
-            <form class="form-inline" align="center">
-                <a href="{{url_for('user')}}"><i class="icon-user icon-large">User</i></a>
+        <form class="form-inline" align="center">
+            <a href="{{url_for('user')}}"><i class="icon-user icon-large">User</i></a>
 
-                <label>&nbsp;&nbsp;&nbsp;&nbsp;Generation:</label>
-                <input class="generation form-control input-sm" type="text" style="width: 50px; text-align: center; margin-right: 20px; margin-left: 10px" />
-                <a class="btn btn-primary start-genetic-algorithm" href="#"><i class="icon-play"></i></a>
-                <a class="btn btn-primary pause-genetic-algorithm" href="#" style="display: none;"><i class="icon-pause"></i></a>
-                <a class="btn btn-default step-genetic-algorithm" href="#"><i class="icon-step-forward"></i></a>
-                <a class="btn btn-default reset-genetic-algorithm" href="#"><i class="icon-refresh"></i></a>
-            </form>
-            <form class="form-inline" align="center">
-                <label>Population:</label>
-                <input class="population form-control input-sm" type="text" style="width: 50px; text-align: center" value="100" />
-                <label style="margin-left: 20px;">Mutation probability:</label>
-                <input class="mutation-probability form-control" type="text" style="text-align: center; width: 50px" value="0.5" />
-                <label style="margin-left: 20px;">Mutation multiplier:</label>
-                <input class="mutation-multiplier form-control" type="text" style="text-align: center; width: 50px" value="0.1" />
-                <label style="margin-left: 20px;">Death rate:</label>
-                <input class="death-rate form-control input-sm" type="text" style="width: 50px; text-align: center" value="0.3" />
-            </form>
-{#            <div class="calculating"><i class="icon-spinner icon-spin icon-large"></i>Calculating...</div>    #}
-            <button id="clickJSON3">Use UserInput(Beta)</button>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;Generation:</label>
+            <input class="generation form-control input-sm" type="text" style="width: 50px; text-align: center; margin-right: 20px; margin-left: 10px" />
+            <a class="btn btn-primary start-genetic-algorithm" href="#"><i class="icon-play"></i></a>
+            <a class="btn btn-primary pause-genetic-algorithm" href="#" style="display: none;"><i class="icon-pause"></i></a>
+            <a class="btn btn-default step-genetic-algorithm" href="#"><i class="icon-step-forward"></i></a>
+            <a class="btn btn-default reset-genetic-algorithm" href="#"><i class="icon-refresh"></i></a>
+        </form>
+        <form class="form-inline" align="center">
+            <label>Population:</label>
+            <input class="population form-control input-sm" type="text" style="width: 50px; text-align: center" value="100" />
+            <label style="margin-left: 20px;">Mutation probability:</label>
+            <input class="mutation-probability form-control" type="text" style="text-align: center; width: 50px" value="0.5" />
+            <label style="margin-left: 20px;">Mutation multiplier:</label>
+            <input class="mutation-multiplier form-control" type="text" style="text-align: center; width: 50px" value="0.1" />
+            <label style="margin-left: 20px;">Death rate:</label>
+            <input class="death-rate form-control input-sm" type="text" style="width: 50px; text-align: center" value="0.3" />
+        </form>
+{# <!--           <div class="calculating"><i class="icon-spinner icon-spin icon-large"></i>Calculating...</div>   --> #}
+            <button id="clickJSON3">Reseved Button</button>
             <button id="clickJSON">Use Sample Target 1 for Test</button>
             <button id="clickJSON2">Use Sample Target 2 for Test</button>
 
@@ -148,8 +176,7 @@
         
         </form>    
 
-                                                                 -->
-
+                                                                
     <script type="text/javascript">
 
     var userJsonToRun = {"nutrientTargets": { "calories": {{calories}},
@@ -158,44 +185,76 @@
      "gender": {{gender}}, "age": {{age}} }};
 
     </script>
-    <script type="text/javascript" src="js/defaultJson.js"></script> #}   
+    <script type="text/javascript" src="js/defaultJson.js"></script>--> #}   
 
-        <p></p>
+    <p></p>
+    <div id="ingredientTableJson" class="col-xs-4"></div>
+
+    <div class="col-xs-4">
+{# <!--       <textarea id="ingredientform" name = "ingredientform" rows="10">
         <div id="ingredientTableJson" class="col-xs-4"></div>
+    </textarea>     
+     {{ ingredientform.json }}
+    {{ ingredientform.submit }}      --> 
+    {{ wtf.quick_form(ingredientform) }} 
 
-        <div class="col-xs-4">
-        {{ wtf.quick_form(ingredientform) }}
-        </textarea>
-        </div>
+    {{ wtf.quick_form(ingredientform) }}
+    {{ ingredientform.json }}
+    {{ ingredientform.hidden(id='ingredientTableJsonVal') }}
+    {{ ingredientform.submit }}   
+    </div>
 
-        <div class="col-xs-4">
-        <p>JSON Here!!!!!!!!!</p>
-        {{ json }}
-        </textarea>
-        </div>
-        <p></p>
-        <div class="container">
-        <h2>What is this?</h2>
-        <p>Genetic Soylent is an attempt to automatically create a Soylent recipe given a list of ingredients and a target nutrient profile.</p>
-        <p>You can play with it by pressing <i class="icon-step-forward"></i> to step to the next generation, <i class="icon-play"></i> to step to next generations automatically and <i class="icon-refresh"></i> to reset the simulation.</p>
-        <p>Original code by nick: <a href="http://github.com/nick/genetic-soylent">http://github.com/nick/genetic-soylent</a></p>
-        <p>This version by 2potatoes: <a href="http://github.com/2potatoes/genetic-soylent">http://github.com/2potatoes/genetic-soylent</a></p>
-        <p>Notes on genetic soylent can be found on <a href="http://spudlent.blogspot.com/search/label/Genetic%20Soylent">2potatoes blog</a>.</p>
-        <h2>How it works</h2>
-        <ul>
-            <li>Generate 100 recipes, each recipe containing a random amount of each ingredient.</li>
-            <li>Score each recipe based on how close all the nutrients are to 100%.</li>
-            <li>Sort the recipes from best to worst.</li>
-            <li>Show the best one in the table above.</li>
-        </ul>
-        <p>On each subsequent 'generation', the following happens:</p>
-        <ul>
-            <li>Remove the worst 30 recipes from the list</li>
-            <li>Create 30 new Child recipes containing ingredient amounts taken from two randomly selected Parent recipes.</li>
-            <li>Ingredient amounts in each Child can also be mutated if the 'mutation probability' is met.</li>
-            <li>A mutation works by taking a random ingredient and increasing or decreasing the amount defined by the 'mutation multiplier'. For example, a mutation multiplier of 0.1 will increase or decrease the amount of an ingredient by 10%.</li>
-            <li>Finally, we re-calculate the scores for each recipe, sort them, and show the best one in the table.</li>
-        </ul>
+<form action="/" method="post">
+    {{ ingredientform.json }}
+    {{ ingredientform.hidden(id='ingredientTableJsonVal') }}
+    {{ ingredientform.submit }}
+</form>
+
+    <div class="col-xs-4">
+    <h3>JSON Here!!!!!!!!!</h3>
+    {{ json }}
+    </div>
+
+<p>{{hiddenform}}</p>     #}
+
+{{ wtf.quick_form(ingredientform) }} 
+
+{# <!--
+
+<div class="form-group">
+<input type="hidden" name="hiddenform" class="text-field form-control validate-field required" data-validation-type="neighborhood" id="nbhd" placeholder="Pick One" value="Pick One">
+</div>
+
+        <input id="chag_sort" type="hidden" name="chag_sort">
+        
+        <script type="text/javascript"> 
+            $("#chag_sort").val(sort2);
+        </script>
+--> #}
+
+    <p></p>
+    <div class="container">
+    <h2>What is this?</h2>
+    <p>Genetic Soylent is an attempt to automatically create a Soylent recipe given a list of ingredients and a target nutrient profile.</p>
+    <p>You can play with it by pressing <i class="icon-step-forward"></i> to step to the next generation, <i class="icon-play"></i> to step to next generations automatically and <i class="icon-refresh"></i> to reset the simulation.</p>
+    <p>Original code by nick: <a href="http://github.com/nick/genetic-soylent">http://github.com/nick/genetic-soylent</a></p>
+    <p>This version by 2potatoes: <a href="http://github.com/2potatoes/genetic-soylent">http://github.com/2potatoes/genetic-soylent</a></p>
+    <p>Notes on genetic soylent can be found on <a href="http://spudlent.blogspot.com/search/label/Genetic%20Soylent">2potatoes blog</a>.</p>
+    <h2>How it works</h2>
+    <ul>
+        <li>Generate 100 recipes, each recipe containing a random amount of each ingredient.</li>
+        <li>Score each recipe based on how close all the nutrients are to 100%.</li>
+        <li>Sort the recipes from best to worst.</li>
+        <li>Show the best one in the table above.</li>
+    </ul>
+    <p>On each subsequent 'generation', the following happens:</p>
+    <ul>
+        <li>Remove the worst 30 recipes from the list</li>
+        <li>Create 30 new Child recipes containing ingredient amounts taken from two randomly selected Parent recipes.</li>
+        <li>Ingredient amounts in each Child can also be mutated if the 'mutation probability' is met.</li>
+        <li>A mutation works by taking a random ingredient and increasing or decreasing the amount defined by the 'mutation multiplier'. For example, a mutation multiplier of 0.1 will increase or decrease the amount of an ingredient by 10%.</li>
+        <li>Finally, we re-calculate the scores for each recipe, sort them, and show the best one in the table.</li>
+    </ul>
 
     </div>
     

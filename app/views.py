@@ -56,7 +56,10 @@ def index():
 	if request.method == 'POST':
 
 		json = ingredientform.json.data
-		return render_template('index.html', ingredientform = ingredientform, json = json)
+		hiddenform = ingredientform.hidden.data
+		
+		return render_template('index.html', ingredientform = ingredientform, json = json,
+			hiddenform = hiddenform)
 
 	elif request.method == 'GET':
 		return render_template('index.html', ingredientform = ingredientform)
@@ -66,6 +69,7 @@ def index():
 def user():
 	form = UserForm()
 	ingredientform = IngredientsForm()
+	#hform = 
 	
 
 	if request.method == 'POST':
@@ -103,6 +107,7 @@ def user():
 		#session['carbs'] = carbs
 
 		json = ingredientform.json.data
+		hiddenform = ingredientform.hidden.data
 
 		newUser = User(email = form.email.data, 
 					   gender = form.gender.data, 
@@ -121,7 +126,6 @@ def user():
 			db.session.add(newUser)
 			db.session.commit()
 
-
 		#json = ingredientform.json.data
 
 		#if ingredientform.validate_on_submit():
@@ -134,7 +138,8 @@ def user():
 		#return redirect(url_for('user'))
 		return render_template('index.html', calories = TDEE,  protein = protein, 
 			fat = fat, carbs = carbs, gender = form.gender.data, age = form.age.data,
-			email = form.email.data, ingredientform = ingredientform, json = json)
+			email = form.email.data, ingredientform = ingredientform, json = json,
+			hiddenform = hiddenform)
 
 	elif request.method == 'GET':
 		return render_template('user.html', form=form)

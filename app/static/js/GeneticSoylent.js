@@ -279,6 +279,10 @@ GeneticSoylent.prototype.render = function() {
         nutrientKeys: _.keys(this.targetNutrients)
     }));
 
+    $('#ingredientTableJsonVal').val("sbsbsbsbsbsbsbsbsbsbsb");
+  
+
+
     $('.nutrientInput').change(function(){
         // split the name of the function by separator "_._"
         // keyInfo[0] is the nutrient name
