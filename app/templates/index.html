@@ -148,9 +148,9 @@
             <input class="death-rate form-control input-sm" type="text" style="width: 50px; text-align: center" value="0.3" />
         </form>
 {# <!--           <div class="calculating"><i class="icon-spinner icon-spin icon-large"></i>Calculating...</div>   --> #}
-            <button id="clickJSON3">Reseved Button</button>
-            <button id="clickJSON">Use Sample Target 1 for Test</button>
-            <button id="clickJSON2">Use Sample Target 2 for Test</button>
+            <button class="btn btn-default" disabled="disabled" id="clickJSON3">Reserved Button</button>
+            <button class="btn btn-info" id="clickJSON">Use Sample Target 1</button>
+            <button class="btn btn-info" id="clickJSON2">Use Sample Target 2</button>
 
         </div>
     </div>
@@ -169,7 +169,7 @@
 
         <p>{"nutrientTargets": {"calories": {{calories}}, "protein": {{protein}}, "fat": {{fat}}, "carbs": {{carbs}}, "name": "{{email}}","gender": "{{gender}}", "age": {{age}} }}</p>
         {% endif %}
-        <textarea id="inputJSON" rows="2" style="width:100%">
+        <textarea class="form-control" id="inputJSON" rows="2" style="width:100%">
         {% if calories %}
         {"nutrientTargets": {"calories": {{calories}}, "protein": {{protein}}, "fat": {{fat}}, "carbs": {{carbs}}, "name": "{{email}}","gender": "{{gender}}", "age": {{age}} }}
         {% endif %}
@@ -211,14 +211,16 @@
     </script>
     <script type="text/javascript" src="js/defaultJson.js"></script>--> #}   
 
-    <p></p>
-    <div class="container">
+<p></p>
+<div class="container">
     <h2>Ingredients table</h2>
-        <h4>Click Submit button to save your data.</h4>
+    <h4>Click Submit button to save your data.</h4>
+
     <form method="POST"> 
-{{ ingredientform.json(placeholder="json", id = "ingredientTableJsonVal", rows="3", style="width:100%") }}
-{{ ingredientform.submit() }}
-</form>
+    {{ ingredientform.json(placeholder="json", class="form-control", id = "ingredientTableJsonVal", rows="3", style="width:100%") }}
+
+    {{ ingredientform.submit(class="btn btn-primary") }}
+    </form>
 
  </div>
 

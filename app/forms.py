@@ -6,7 +6,7 @@ from wtforms.validators import Required
 from models import db, User
 
 class UserForm(Form):
-	email = StringField("Email", default = "test@gmail.com")
+	email = StringField("Email", default = "test@example.com")
 	gender = RadioField("Gender", choices=[("Male","Male"),("Female","Female")], default = "Male")
 	act = RadioField("Which of these describes your daily activity?", 
 		     choices=[(1,"Sedentary"),(2,"Low"),

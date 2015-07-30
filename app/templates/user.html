@@ -30,7 +30,60 @@
     &nbsp;&nbsp;&nbsp;&nbsp;
    <a href="{{url_for('user')}}"><i class="icon-user icon-large">User</i></a>
 </p>
+
+{#
 {{ wtf.quick_form(form) }}
+{{ form.email(placeholder="example@gmail.com", class="form-control", id = "ingredientTableJsonVal", rows="3", style="width:100%") }}
+#}
+
+    <form method="POST">
+    <p> 
+    {{ form.email.label }}
+    {{ form.email(placeholder="example@gmail.com", class="form-control") }}</p>
+    
+    <p>
+    <div class="col-xs-6">
+    {{ form.gender.label }}
+    {{ form.gender(class="radio") }}
+    </div>
+
+    <div class="col-xs-6">
+    {{ form.act.label }}
+    {{ form.act(class="radio") }}
+    </div></p>
+
+    <p>
+    <div class="col-xs-6">
+    {{ form.weight.label }}
+    <div class="input-group">
+    {{ form.weight(class="form-control") }}
+    <div class="input-group-addon">lb</div>
+    </div></div>
+
+
+    <div class="col-xs-6">
+    {{ form.height.label }}
+    {{ form.height(class="form-control") }}
+    </div></p>
+
+    <p>
+    <div class="col-xs-6">
+    {{ form.goal.label }}
+    {{ form.goal(class="radio") }}
+    </div>
+
+    <div class="col-xs-6">
+    {{ form.age.label }}
+    <div class="input-group">
+    {{ form.age(class="form-control") }}
+    <div class="input-group-addon">years</div>
+    </div></div></p>
+
+    <div class="col-xs-12">
+    {{ form.submit(class="btn btn-primary") }}</p>
+    </div>
+    </form>
+
 </div>
 
 
