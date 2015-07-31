@@ -29,15 +29,15 @@ class User(db.Model):
 	carbs = db.Column(db.Float)
 	###
 	def __init__(self, email, gender, act, weight, height, goal, age, calories, protein, fat, carbs, json):
-		self.email = email.title()
-		self.gender = gender.title()
-		self.act = act.title()
+		self.email = email
+		self.gender = gender
+		self.act = act
 		self.weight = weight
-		self.height = height.title()
-		self.goal = goal.title()
+		self.height = height
+		self.goal = goal
 		self.age = age
 		self.calories = calories
 		self.protein = protein
 		self.fat = fat
 		self.carbs = carbs
-		self.json = json.title()
+		self.json = json
