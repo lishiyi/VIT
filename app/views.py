@@ -75,14 +75,19 @@ def user():
 		#session['protein'] = protein
 		#session['fat'] = fat
 		#session['carbs'] = carbs
-		email = form.email.data
+		if form.email.data:
+			email = form.email.data
+		else:
+			email = session['email']
+			
+		session['email'] = email
 
 		ingredientform = IngredientsForm()
 		json = ingredientform.json.data
 		#hiddenform = ingredientform.hidden.data
 
 		if json:
-			newUser = User(email = email, 
+			newUser = User(email = session['email'], 
 			gender = form.gender.data, 
 			act = form.act.data, 
 			weight = form.weight.data,
