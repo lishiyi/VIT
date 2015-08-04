@@ -102,6 +102,7 @@ def user():
 
 			db.session.add(newUser)
 			db.session.commit()
+			#session.pop('email', None)
 
 		#json = ingredientform.json.data
 

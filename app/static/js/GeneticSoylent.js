@@ -102,15 +102,15 @@ GeneticSoylent.prototype.defaultRatios = function() {
       var d = this.ingredients[1]["amount"];
     //}
     return {
-       'Calcium:Phosphorus': {min: 1, max: 2.5, numerator: "calcium", denominator: "phosphorus", unitCorrection: 1, importanceFactor: 1},
-       'Calcium:Magnesium':  {min: 1, max: 2, numerator: "calcium", denominator: "magnesium", unitCorrection: 1000, importanceFactor: 1},
-       'Potassium:Sodium':  {min: 2, max: 999, numerator: "potassium", denominator: "sodium", unitCorrection: 1, importanceFactor: 1},
-       'Iron:Copper':  {min: 10, max: 17, numerator: "iron", denominator: "copper", unitCorrection: 1, importanceFactor: 1},
-       'Zinc:Copper':  {min: 10, max: 15, numerator: "zinc", denominator: "copper", unitCorrection: 1, importanceFactor: 1},
-       'Iron:Zinc':  {min: 0.01, max: 2, numerator: "iron", denominator: "zinc", unitCorrection: 1, importanceFactor: 1},
-       'Omega-6:Omega-3':  {min: 0.9, max: 1.2, numerator: "omega_6", denominator: "omega_3", unitCorrection: 1, importanceFactor: 1},
+       //'Calcium:Phosphorus': {min: 1, max: 2.5, numerator: "calcium", denominator: "phosphorus", unitCorrection: 1, importanceFactor: 1},
+       //'Calcium:Magnesium':  {min: 1, max: 2, numerator: "calcium", denominator: "magnesium", unitCorrection: 1000, importanceFactor: 1},
+       //'Potassium:Sodium':  {min: 2, max: 999, numerator: "potassium", denominator: "sodium", unitCorrection: 1, importanceFactor: 1},
+       //'Iron:Copper':  {min: 10, max: 17, numerator: "iron", denominator: "copper", unitCorrection: 1, importanceFactor: 1},
+       //'Zinc:Copper':  {min: 10, max: 15, numerator: "zinc", denominator: "copper", unitCorrection: 1, importanceFactor: 1},
+       //'Iron:Zinc':  {min: 0.01, max: 2, numerator: "iron", denominator: "zinc", unitCorrection: 1, importanceFactor: 1},
+       'Omega-6:Omega-3':  {min: 1, max: 2.31, numerator: "omega_6", denominator: "omega_3", unitCorrection: 1, importanceFactor: 1},
        //'Soy Lecithin Granules:Sea Sal':  {min: 0.0005, max: 777, numerator: this.ingredients[0]["amount"], denominator: this.ingredients[1]["amount"], unitCorrection: 1, importanceFactor: 1},
-       'Soy Lecithin Granules:Sea Sal':  {min: 0.0005, max: 777, numerator: n, denominator: d, unitCorrection: 1, importanceFactor: 1},
+       //'Soy Lecithin Granules:Sea Sal':  {min: 0.0005, max: 777, numerator: n, denominator: d, unitCorrection: 1, importanceFactor: 1},
     };
 };
 

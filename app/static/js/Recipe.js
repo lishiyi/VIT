@@ -51,6 +51,7 @@ Recipe.prototype.createChildWith = function(mate) {
         newIngredientAmount = Math.min(newIngredientAmount, theMax);
         newIngredientAmount = Math.max(newIngredientAmount, theMin);
         //for the protein we want 2/1 ratio of brown rice/pea protein
+        /*
         if(i == 5){
 
             childIngredientAmounts.push(childIngredientAmounts[4] * 0.5);
@@ -60,10 +61,10 @@ Recipe.prototype.createChildWith = function(mate) {
 
             childIngredientAmounts.push(childIngredientAmounts[3] * 0.5);
         }
-        else{
-
-            childIngredientAmounts.push(randomParent.ingredientAmounts[i]);
-        }
+        else{  }
+        */
+        childIngredientAmounts.push(randomParent.ingredientAmounts[i]);
+        
         
     }
 
