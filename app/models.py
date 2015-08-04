@@ -21,14 +21,20 @@ class User(db.Model):
 	goal = db.Column(db.String(255))
 	age = db.Column(db.Integer)
 	timestamp = db.Column(db.DateTime, index = True, default = datetime.now)
-	json = db.Column(db.String(255))
+	ingredientJson = db.Column(db.String(255))
 
 	calories = db.Column(db.Float)
 	protein = db.Column(db.Float)
 	fat = db.Column(db.Float)
 	carbs = db.Column(db.Float)
+
+	brown = db.Column(db.Integer)
+	protein_blend = db.Column(db.Integer)
+	carb_blend = db.Column(db.Integer)
+	fat_blend = db.Column(db.Integer)
 	###
-	def __init__(self, email, gender, act, weight, height, goal, age, calories, protein, fat, carbs, json):
+	def __init__(self, email, gender, act, weight, height, goal, age, calories, protein, 
+		fat, carbs, ingredientJson, brown, protein_blend, carb_blend, fat_blend):
 		self.email = email
 		self.gender = gender
 		self.act = act
@@ -40,4 +46,8 @@ class User(db.Model):
 		self.protein = protein
 		self.fat = fat
 		self.carbs = carbs
-		self.json = json
+		self.ingredientJson = ingredientJson
+		self.brown = brown
+		self.protein_blend = protein_blend
+		self.carb_blend = carb_blend
+		self.fat_blend = fat_blend

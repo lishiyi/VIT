@@ -1,10 +1,11 @@
-import os
+#import os
 import math
 from flask import render_template, flash, redirect, session, url_for, request, g, send_from_directory, make_response, jsonify
-from flask.ext.login import login_user, logout_user, current_user, login_required, current_app
-from app import app, db, lm
+#from flask.ext.login import login_user, logout_user, current_user, login_required, current_app
+from app import app, db#, lm
 from forms import UserForm, IngredientsForm
 from models import User
+import json
 ######ADDED########################################
 from flaskext.mysql import MySQL
 import requests
@@ -83,10 +84,19 @@ def user():
 		session['email'] = email
 
 		ingredientform = IngredientsForm()
-		json = ingredientform.json.data
+		#ingredientJson = json.loads(ingredientform.ingredientJson.data)
 		#hiddenform = ingredientform.hidden.data
+		ingredientJson = ingredientform.ingredientJson.data
 
-		if json:
+		if ingredientJson:
+
+			ingredientJsonDeleteComma = ingredientJson[0:len(ingredientJson)-2] + '}'
+			ingredientJsonLoads = json.loads(ingredientJsonDeleteComma)
+			brown = int(ingredientJsonLoads['Brown Rice Flour Brown'])
+			protein_blend = int(ingredientJsonLoads['Protein Blend 2:1'])
+			carb_blend = int(ingredientJsonLoads['Carb Blend 1:1'])
+			fat_blend = int(ingredientJsonLoads['Fat Blend 1:2:1'])
+
 			newUser = User(email = session['email'], 
 			gender = form.gender.data, 
 			act = form.act.data, 
@@ -98,7 +108,11 @@ def user():
 			protein = protein,
 			fat = fat,
 			carbs = carbs,
-			json = json)
+			ingredientJson = ingredientJsonDeleteComma,
+			brown = brown,
+			protein_blend = protein_blend,
+			carb_blend = carb_blend,
+			fat_blend = fat_blend)
 
 			db.session.add(newUser)
 			db.session.commit()
@@ -147,6 +161,6 @@ def add_numbers():
     return jsonify(result = a + b)
 
 @app.route('/_json')
-def json():
+def _json():
     ingredients = request.args.get('ingredients', 0, type = int)
     return jsonify(ingredients)

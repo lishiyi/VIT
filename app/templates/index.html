@@ -68,6 +68,7 @@
     <script type="text/javascript" src="static/js/app.js"></script>
 
 {#
+<!--
 <script type=text/javascript>
   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
@@ -114,14 +115,13 @@
 <p><span id="result">?</span></p>
 <p><a href=# id="calculate">calculate server side</a>
 </p></div>
-
+-->
 #}
-
 
     <div class="row">
         <div class="col-xs-4">
             <div class="img">
-                <img src="static/img/logo.png" height="150" width="150">
+                <a href="{{url_for('user')}}"><img src="static/img/logo.png" height="150" width="150"></a>
             </div>
         </div>
         <div class="col-xs-8>">
@@ -217,7 +217,7 @@
     <h4>Click Submit button to save your data.</h4>
 
     <form method="POST"> 
-    {{ ingredientform.json(placeholder="json", class="form-control", id = "ingredientTableJsonVal", rows="3", style="width:100%") }}
+    {{ ingredientform.ingredientJson(placeholder="ingredientJson", class="form-control", id = "ingredientTableJsonVal", rows="3", style="width:100%") }}
 
     {{ ingredientform.submit(class="btn btn-primary") }}
     </form>
@@ -258,10 +258,10 @@
 
 
 {# 
-
+<!--
 {{ ingredientform.json(placeholder="json", id = "ingredientTableJsonVal") }}
 {{ ingredientform.submit }}
-<!--
+
 
 <div class="form-group">
 <input type="hidden" name="hiddenform" class="text-field form-control validate-field required" data-validation-type="neighborhood" id="nbhd" placeholder="Pick One" value="Pick One">

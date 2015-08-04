@@ -31,6 +31,6 @@ class UserForm(Form):
 	submit = SubmitField('Submit')
 
 class IngredientsForm(Form):
-	json = TextAreaField("json")
+	ingredientJson = TextAreaField("ingredientJson")
 	#hidden = HiddenField("json",  [validators.Length(min=4, max=200)] )
 	submit = SubmitField('Submit')
