@@ -32,9 +32,12 @@ class User(db.Model):
 	protein_blend = db.Column(db.Integer)
 	carb_blend = db.Column(db.Integer)
 	fat_blend = db.Column(db.Integer)
+
+	deviation = db.Column(db.Float)
 	###
 	def __init__(self, email, gender, act, weight, height, goal, age, calories, protein, 
-		fat, carbs, ingredientJson, brown, protein_blend, carb_blend, fat_blend):
+		fat, carbs, ingredientJson, brown, protein_blend, carb_blend, fat_blend
+		,deviation):
 		self.email = email
 		self.gender = gender
 		self.act = act
@@ -51,3 +54,4 @@ class User(db.Model):
 		self.protein_blend = protein_blend
 		self.carb_blend = carb_blend
 		self.fat_blend = fat_blend
+		self.deviation = deviation

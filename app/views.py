@@ -78,10 +78,22 @@ def user():
 		#session['carbs'] = carbs
 		if form.email.data:
 			email = form.email.data
-		else:
+			session['gender'] = form.gender.data
+			session['act'] = form.act.data
+			session['weight'] = form.weight.data
+			session['height'] = form.height.data
+			session['goal'] = form.goal.data
+			session['age'] = form.age.data
+
+			session['calories'] = TDEE
+			session['protein'] = protein
+			session['fat'] = fat
+			session['carbs'] = carbs
+		elif session['email']:
 			email = session['email']
 			
 		session['email'] = email
+		
 
 		ingredientform = IngredientsForm()
 		#ingredientJson = json.loads(ingredientform.ingredientJson.data)
@@ -98,21 +110,34 @@ def user():
 			fat_blend = int(ingredientJsonLoads['Fat Blend 1:2:1'])
 
 			newUser = User(email = session['email'], 
-			gender = form.gender.data, 
-			act = form.act.data, 
-			weight = form.weight.data,
-			height = form.height.data, 
-			goal = form.goal.data, 
-			age = form.age.data,
-			calories = TDEE,
-			protein = protein,
-			fat = fat,
-			carbs = carbs,
+			gender = session['gender'], 
+			act = session['act'], 
+			weight = session['weight'],
+			height = session['height'], 
+			goal = session['goal'], 
+			age = session['age'],
+			calories = session['calories'],
+			protein = session['protein'],
+			fat = session['fat'],
+			carbs = session['carbs'],
 			ingredientJson = ingredientJsonDeleteComma,
 			brown = brown,
 			protein_blend = protein_blend,
 			carb_blend = carb_blend,
-			fat_blend = fat_blend)
+			fat_blend = fat_blend,
+			deviation = ingredientform.deviation.data)
+
+			#session.pop('email', None)
+			#session.pop('gender', None)
+			#session.pop('act', None)
+			#session.pop('weight', None)
+			#session.pop('height', None)
+			#session.pop('goal', None)
+			#session.pop('age', None)
+			#session.pop('calories', None)
+			#session.pop('protein', None)
+			#session.pop('fat', None)
+			#session.pop('carb', None)
 
 			db.session.add(newUser)
 			db.session.commit()
