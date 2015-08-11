@@ -1,4 +1,4 @@
-from app import db, app
+#from app import db, app
 from flask.ext.sqlalchemy import SQLAlchemy
 from datetime import datetime
 #import bleach

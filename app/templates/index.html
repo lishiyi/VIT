@@ -161,6 +161,24 @@
         <div id="nutrientTableRemainder" class="col-xs-4"></div>
     </div>
 
+<div class="container">
+    <div class="col-xs-5">
+    <h2>Ingredients table:</h2>
+    <h4>Click Submit button to save your data.</h4>
+    </div>
+
+    <form method="POST"> 
+    <div class="col-xs-5">
+    {{ ingredientform.ingredientJson(placeholder="ingredientJson", class="form-control", id = "ingredientTableJsonVal", rows="3", style="width:100%") }}
+    </div>
+    <div class="col-xs-2">
+    {{ ingredientform.deviation(placeholder="deviation", class="form-control", id = "deviationTable", rows="1", style="width:100%") }}
+    </div>
+    {{ ingredientform.submit(class="btn btn-primary") }}
+    </form>
+
+ </div>
+
     <div class="container">
 
         <h2>Choose Your Own Recipe.</h2>
@@ -169,7 +187,7 @@
 
         <p>{"nutrientTargets": {"calories": {{calories}}, "protein": {{protein}}, "fat": {{fat}}, "carbs": {{carbs}}, "name": "{{email}}","gender": "{{gender}}", "age": {{age}} }}</p>
         {% endif %}
-        <textarea class="form-control" id="inputJSON" rows="2" style="width:100%">
+        <textarea class="form-control" id="inputJSON" rows="1" style="width:100%">
         {% if calories %}
         {"nutrientTargets": {"calories": {{calories}}, "protein": {{protein}}, "fat": {{fat}}, "carbs": {{carbs}}, "name": "{{email}}","gender": "{{gender}}", "age": {{age}} }}
         {% endif %}
@@ -212,23 +230,7 @@
     <script type="text/javascript" src="js/defaultJson.js"></script>--> #}   
 
 <p></p>
-<div class="container">
-    <h2>Ingredients table</h2>
-    <h4>Click Submit button to save your data.</h4>
 
-    <form method="POST"> 
-    <div class="col-xs-10">
-    {{ ingredientform.ingredientJson(placeholder="ingredientJson", class="form-control", id = "ingredientTableJsonVal", rows="3", style="width:100%") }}
-    </div>
-    <div class="col-xs-2">
-    {{ ingredientform.deviation(placeholder="deviation", class="form-control", id = "deviationTable", rows="1", style="width:100%") }}
-    </div>
-    {{ ingredientform.submit(class="btn btn-primary") }}
-    </form>
-
- </div>
-
-    <div id="deviationTable" class="col-xs-4"></div>
 {# <!--       <textarea id="ingredientform" name = "ingredientform" rows="10">
         <div id="ingredientTableJson" class="col-xs-4"></div>
     </textarea>     

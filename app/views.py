@@ -7,17 +7,17 @@ from forms import UserForm, IngredientsForm
 from models import User
 import json
 ######ADDED########################################
-from flaskext.mysql import MySQL
+#from flaskext.mysql import MySQL
 import requests
 from flask.ext.sqlalchemy import get_debug_queries
 ######ADDED########################################
 #MySQL configuration.
-mysql = MySQL()
-app.config['MYSQL_DATABASE_USER'] = 'devuser'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'devpwd'
-app.config['MYSQL_DATABASE_DB'] = 'vit'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-mysql.init_app(app)
+#mysql = MySQL()
+#app.config['MYSQL_DATABASE_USER'] = 'devuser'
+#app.config['MYSQL_DATABASE_PASSWORD'] = 'devpwd'
+#app.config['MYSQL_DATABASE_DB'] = 'vit'
+#app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+#mysql.init_app(app)
 
 ############################################################################		
 @app.route('/', methods=['GET', 'POST'])
