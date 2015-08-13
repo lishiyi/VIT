@@ -67,11 +67,23 @@ def user():
 			G = 1.0
 		else:
 			G = 0.8
-		TDEE = G * F * BMR #Calorie Target
-		protein = form.weight.data  * 0.88
-		fat = TDEE * 0.25 / 9
-		carbs = (TDEE - protein * 4 - fat * 9) / 4
 
+		#Calorie Target
+		TDEE = G * F * BMR
+		if TDEE < 1758:
+			TDEE = 1758
+			 
+		protein = form.weight.data  * 0.88
+		# Calculate the fat
+		fat = TDEE * 0.25 / 9
+		if fat < 60.07:
+			fat = 60.07
+		# Calculate the carbs
+		carbs = (TDEE - protein * 4 - fat * 9) / 4
+		if carbs < 225.9:
+			carbs = 225.9
+		# Recalculate the protein
+		protein = (TDEE - carbs * 4 - fat * 9 ) / 4
 		#session['calories'] = TDEE
 		#session['protein'] = protein
 		#session['fat'] = fat

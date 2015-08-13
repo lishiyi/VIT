@@ -147,6 +147,9 @@ GeneticSoylent.prototype.render = function() {
     ].join(''));
 /**************************** TO SHOW DEVIATION **********************************/    
     var deviationHtml = _.template('<%= -completenessScore.toFixed(1) %>');
+    
+    //alert(deviationHtml);
+
     $('#deviationTable').html(deviationHtml({
         total: this.recipes[0].nutrientTotals,
         amounts: this.recipes[0].ingredientAmounts,
@@ -156,6 +159,15 @@ GeneticSoylent.prototype.render = function() {
         nutrientCompleteness: this.recipes[0].nutrientCompleteness,
         nutrientKeys: _.keys(this.targetNutrients)
     }));
+
+    $('#deviationTable').change(function(){
+
+        if( deviationHtml == "0"){
+
+            $('.submit').show();
+        } 
+    });
+
 /*********************************************************************/
     var nutrientHtml = _.template([
       '<table class="table table-condensed">',
