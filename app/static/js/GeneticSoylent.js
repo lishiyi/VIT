@@ -159,15 +159,28 @@ GeneticSoylent.prototype.render = function() {
         nutrientCompleteness: this.recipes[0].nutrientCompleteness,
         nutrientKeys: _.keys(this.targetNutrients)
     }));
+/**
+ * if Deviation is 0, show the submit button.
+ *
+ *
+ */
+    if(this.recipes[0].completenessScore == 0){
 
-    $('#deviationTable').change(function(){
+        $('.calculating').hide();
+        $('.submit').show();
+        testGeneticSoylent.autoGenerate = false;
+        $('.pause-genetic-algorithm').hide();
+        $('.start-genetic-algorithm').show();
+    }
+/*
+    $('#deviationTable').val(function(){
 
-        if( deviationHtml == "0"){
+        //var jsonToRun = $.parseJSON(this.value);
+        //alert(this.value);
 
-            $('.submit').show();
-        } 
+        $('.submit').show();
     });
-
+*/
 /*********************************************************************/
     var nutrientHtml = _.template([
       '<table class="table table-condensed">',

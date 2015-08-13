@@ -32,6 +32,7 @@ $(function(){
     });
 
     $('.reset-genetic-algorithm').click(function(){
+        $('.submit').hide();
         testGeneticSoylent.reset();
         testGeneticSoylent.render();
         return false;
@@ -66,7 +67,7 @@ $(function(){
         //Will run antomatically when user's information completed.
         $('.start-genetic-algorithm').hide();
         $('.pause-genetic-algorithm').show();
-        //$('.submit').hide();
+        $('.submit').hide();
         //$('.calculating').show();
         testGeneticSoylent.autoGenerate = true;
         testGeneticSoylent.nextGeneration();
@@ -80,7 +81,7 @@ $(function(){
                     ingredients: convertJSONIngredientsToGeneticIngredients(jsonToRun.ingredients),
                     targetNutrients: convertJSONNutritionToGeneticNutrition(jsonToRun.nutrientTargets)
         });
-
+        $('.submit').hide();
         testGeneticSoylent.reset();
         testGeneticSoylent.render();
     });
