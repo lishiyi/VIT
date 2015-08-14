@@ -98,8 +98,8 @@ GeneticSoylent.prototype.defaultRatios = function() {
     }
     else{
   */
-      var n = this.ingredients[0]["amount"];
-      var d = this.ingredients[1]["amount"];
+      //var n = this.ingredients[0]["amount"];
+      //var d = this.ingredients[1]["amount"];
     //}
     return {
        //'Calcium:Phosphorus': {min: 1, max: 2.5, numerator: "calcium", denominator: "phosphorus", unitCorrection: 1, importanceFactor: 1},
@@ -171,6 +171,8 @@ GeneticSoylent.prototype.render = function() {
         testGeneticSoylent.autoGenerate = false;
         $('.pause-genetic-algorithm').hide();
         $('.start-genetic-algorithm').show();
+        $('.hahahahaha').hide();
+        $('.sasasasasa').show();
     }
 /*
     $('#deviationTable').val(function(){
@@ -335,7 +337,47 @@ GeneticSoylent.prototype.render = function() {
         nutrientCompleteness: this.recipes[0].nutrientCompleteness,
         nutrientKeys: _.keys(this.targetNutrients)
     }));
+/*****************************Json file of complete nutrients*****************************/
+    var nutrientHtmlJsonVal = _.template([
+        '{',
+            '<% _.each(nutrientKeys, function(nutrient, index) { %>',
+              '<% if(total[nutrient] != undefined){ %>',
+                  '"<%= nutrient %>"',
+                  ': ',
+                  '<% var tooltip = "" %>',
+                  '<% _.each(ingredients, function(ingredient, idx) { %>',
+                    '<% tooltip += (ingredient[nutrient] * Math.round(amounts[idx])).toFixed(2) + "\t" + ingredient["name"] + "\\r" %>',
+                  '<% }); %>',
+                  '<%= total[nutrient].toFixed(2) %>',
+                  ',',
+              '<% }; %>',
+            '<% }); %>',
+        '}'
+        ].join(''));
 
+    $('#nutrientHtmlJson').html(nutrientHtmlJsonVal({
+        total: this.recipes[0].nutrientTotals,
+        amounts: this.recipes[0].ingredientAmounts,
+        ingredients: this.ingredients,
+        targetProfile: this.targetNutrients,
+        nutrientCompleteness: this.recipes[0].nutrientCompleteness,
+        //nutrientKeys: _.keys(this.targetNutrients)
+        nutrientKeys: nutrientTableKeysForFirstColumn,
+
+        ratioKeys: _.keys(this.recipes[0].ratioCompleteness),
+        ratioCompleteness: this.recipes[0].ratioCompleteness,
+        ratioAmounts: this.recipes[0].ratioAmounts,
+        targetRatios: this.ratios,
+    }));
+    $('#nutrientHtmlJson2').html(nutrientHtmlJsonVal({
+        total: this.recipes[0].nutrientTotals,
+        amounts: this.recipes[0].ingredientAmounts,
+        ingredients: this.ingredients,
+        targetProfile: this.targetNutrients,
+        nutrientCompleteness: this.recipes[0].nutrientCompleteness,
+        nutrientKeys: nutrientTableKeysForSecondColumn.sort()
+    }));
+/************************************************************/
 
 
     $('.nutrientInput').change(function(){

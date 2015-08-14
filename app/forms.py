@@ -34,4 +34,6 @@ class IngredientsForm(Form):
 	ingredientJson = TextAreaField("ingredientJson")
 	#hidden = HiddenField("json",  [validators.Length(min=4, max=200)] )
 	deviation = TextAreaField("deviation")
+	nutrient = TextAreaField("nutrient")
+	nutrient2 = TextAreaField("nutrient2")
 	submit = SubmitField('Continue')

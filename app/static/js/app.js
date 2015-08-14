@@ -67,7 +67,7 @@ $(function(){
         //Will run antomatically when user's information completed.
         $('.start-genetic-algorithm').hide();
         $('.pause-genetic-algorithm').show();
-        $('.submit').hide();
+        //$('.submit').hide();
         //$('.calculating').show();
         testGeneticSoylent.autoGenerate = true;
         testGeneticSoylent.nextGeneration();
@@ -2105,19 +2105,20 @@ $(function(){
         newNutrition["carbs"]["max"] = newNutrition["carbs"]["min"] + 20;
         newNutrition["carbs"]["min"] = newNutrition["carbs"]["min"] - 20;
 
-        newNutrition["fat"]["max"] = newNutrition["fat"]["min"] + 10;
-        newNutrition["fat"]["min"] = newNutrition["fat"]["min"] - 10;
+        newNutrition["fat"]["max"] = newNutrition["fat"]["min"] + 5;
+        newNutrition["fat"]["min"] = newNutrition["fat"]["min"] - 5;
 
         newNutrition["protein"]["max"] = newNutrition["protein"]["min"] + 10;
         newNutrition["protein"]["min"] = newNutrition["protein"]["min"] - 10;
 
         // also add a cost target
+        /*
         newNutrition["cost"] = {
             min: 0,
             max: 10,
             importanceFactor: 1
         };
-
+  */
         return newNutrition;
     }
 

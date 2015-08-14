@@ -20,7 +20,6 @@ from flask.ext.sqlalchemy import get_debug_queries
 #mysql.init_app(app)
 
 ############################################################################		
-@app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 #@login_required
 def index():
@@ -38,7 +37,7 @@ def index():
 	elif request.method == 'GET':
 		return render_template('index.html', ingredientform = ingredientform)
 	
-
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/user', methods=['GET', 'POST'])
 def user():
 	form = UserForm()
@@ -112,14 +111,30 @@ def user():
 		#hiddenform = ingredientform.hidden.data
 		ingredientJson = ingredientform.ingredientJson.data
 
+		ingredientJsonLoads = None
+		nutrientMerge = None
+		ratio = None
+
 		if ingredientJson:
 
-			ingredientJsonDeleteComma = ingredientJson[0:len(ingredientJson)-2] + '}'
+			ingredientJsonDeleteComma = ingredientJson[0:-2] + '}'
 			ingredientJsonLoads = json.loads(ingredientJsonDeleteComma)
 			brown = int(ingredientJsonLoads['Brown Rice Flour Brown'])
 			protein_blend = int(ingredientJsonLoads['Protein Blend 2:1'])
 			carb_blend = int(ingredientJsonLoads['Carb Blend 1:1'])
 			fat_blend = int(ingredientJsonLoads['Fat Blend 1:2:1'])
+
+			nutrientDeleteComma = ingredientform.nutrient.data[0:-2] + '}'
+			nutrient2DeleteComma = ingredientform.nutrient2.data[0:-2] + '}'
+			#nutrientMerge = json.loads(nutrientDeleteComma) + json.loads(nutrient2DeleteComma)
+
+			nutrientMerge = json.loads(nutrientDeleteComma).copy()
+			nutrientMerge.update(json.loads(nutrientDeleteComma))
+
+			#ratio = {"calories": nutrientMerge.calories / session['calories'],
+			#		 "carbs":nutrientMerge.carbs / session['carbs'],
+			#		 "protein":nutrientMerge.carbs / session['protein'],
+			#		 "fat": nutrientMerge.carbs / session['fat']}
 
 			newUser = User(email = session['email'], 
 			gender = session['gender'], 
@@ -137,7 +152,10 @@ def user():
 			protein_blend = protein_blend,
 			carb_blend = carb_blend,
 			fat_blend = fat_blend,
-			deviation = ingredientform.deviation.data)
+			deviation = ingredientform.deviation.data,
+			nutrient = nutrientDeleteComma,
+			nutrient2 = nutrient2DeleteComma
+			)
 
 			#session.pop('email', None)
 			#session.pop('gender', None)
@@ -167,7 +185,9 @@ def user():
 		#return redirect(url_for('user'))
 		return render_template('index.html', calories = TDEE,  protein = protein, 
 			fat = fat, carbs = carbs, gender = form.gender.data, age = form.age.data,
-			email = email, ingredientform = ingredientform)
+			email = email, ingredientform = ingredientform, 
+			ingredientJsonLoads = ingredientJsonLoads, nutrientMerge = nutrientMerge,
+			ratio = ratio)
 
 	elif request.method == 'GET':
 		return render_template('user.html', form=form)
@@ -191,13 +211,13 @@ def internal_error(error):
     db.session.rollback()
     return render_template('500.html'), 500
 
-@app.route('/_add_numbers')
-def add_numbers():
-    a = request.args.get('a', 0, type = int)
-    b = request.args.get('b', 0, type = int)
-    return jsonify(result = a + b)
+#@app.route('/_add_numbers')
+#def add_numbers():
+#    a = request.args.get('a', 0, type = int)
+#    b = request.args.get('b', 0, type = int)
+#    return jsonify(result = a + b)
 
-@app.route('/_json')
-def _json():
-    ingredients = request.args.get('ingredients', 0, type = int)
-    return jsonify(ingredients)
+#@app.route('/_json')
+#def _json():
+#    ingredients = request.args.get('ingredients', 0, type = int)
+#    return jsonify(ingredients)
