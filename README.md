@@ -13,6 +13,8 @@ by **jQuery**.
 * Now, we can input our information, the website will calculate how much nutritions we need, and give a ingredients table 
 for that, then save it into database.
 
+* A demo of my latest test version is here: http://lishiyi.pythonanywhere.com/
+
 ## Setup
 First install **Python 2.7**, and **pip**, then easily
 ```python
