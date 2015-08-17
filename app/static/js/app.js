@@ -201,7 +201,7 @@ $(function(){
       "id": "5581b2621df750831932a316",
       "maxAmount": 14 * 8,
       "minAmount": 14 * 8
-    },
+    },  
     {
       "persistedAsin": "B004VLVG0M",
       "name": "Sea Salt",
@@ -325,8 +325,8 @@ $(function(){
       "asin": "",
       "volumeStr": "",
       "id": "5581b2621df750831932a314",
-      "maxAmount": 33 * 100,
-      "minAmount": 33 * 100
+      "maxAmount": 50 * 100,
+      "minAmount": 50 * 100
     },
     {
       "persistedAsin": "",
@@ -388,8 +388,8 @@ $(function(){
       "asin": "",
       "volumeStr": "",
       "id": "5581b2621df750831932a313",
-      "maxAmount": 120 * 100,
-      "minAmount": 120 * 100
+      "maxAmount": 122 * 100,
+      "minAmount": 122 * 100
     },
     {
       "persistedAsin": "",
@@ -451,8 +451,8 @@ $(function(){
       "asin": "",
       "volumeStr": "",
       "id": "5581b2621df750831932a312",
-      "maxAmount": 20 * 27,
-      "minAmount": 20 * 27
+      "maxAmount": 22 * 27,
+      "minAmount": 22 * 27
     },
     {
       "persistedAsin": "B001DB4MFO",
@@ -514,8 +514,8 @@ $(function(){
       "asin": "B001DB4MFO",
       "volumeStr": "",
       "id": "5581b2621df750831932a311",
-      "maxAmount": 10 * 33,
-      "minAmount": 10 * 33
+      "maxAmount": 11 * 33,
+      "minAmount": 11 * 33
     },
     {
       "persistedAsin": "B00028M47C",
@@ -640,8 +640,8 @@ $(function(){
       "asin": "",
       "volumeStr": "",
       "id": "5581b2621df750831932a30f",
-      "maxAmount": 120 * 100,
-      "minAmount": 120 * 100
+      "maxAmount": 122 * 100,
+      "minAmount": 122 * 100
     },
     {
       "persistedAsin": "B00JYF1J2U",
@@ -706,7 +706,7 @@ $(function(){
       "maxAmount": 390,
       "minAmount": 390
     },
-    {
+/*    {
       "persistedAsin": "",
       "name": "Seeds, chia seeds, dried",
       "form": "Powder",
@@ -768,7 +768,7 @@ $(function(){
       "id": "5581b2621df750831932a30c",
       "maxAmount": 7.4 * 100,
       "minAmount": 7.4 * 100
-    },
+    }, */
     {
       "persistedAsin": "",
       "name": "Syrup, cane",
@@ -829,8 +829,8 @@ $(function(){
       "asin": "",
       "volumeStr": "",
       "id": "5581b2621df750831932a30b",
-      "maxAmount": 25*100,
-      "minAmount": 25*100
+      "maxAmount": 50*100,
+      "minAmount": 50*100
     },
     /*
     {
@@ -894,7 +894,7 @@ $(function(){
      "volumeStr": "",
      "id": "55956894f6bf78601ef5ae08"
    },               */
-   {
+/*   {
      "persistedAsin": "",
      "name": "Nuts, almonds",
      "form": "Powder",
@@ -956,7 +956,7 @@ $(function(){
      "id": "55ba5c5d4df48d012b76623f",
      "maxAmount": 21 * 100,
      "minAmount": 21 * 100
-   },
+   }, */
    {
      "persistedAsin": "B000EDDSE8",
      "name": "Golden Flax Meal",
@@ -1017,9 +1017,9 @@ $(function(){
      "asin": "B000EDDSE8",
      "volumeStr": "",
      "id": "55ba5a653ba722ee0d954be9",
-     "maxAmount": 23 * 100,
-     "minAmount": 23 * 100
-   },
+     "maxAmount": 29 * 100,
+     "minAmount": 29 * 100
+   },  
     {
       "persistedAsin": "",
       "name": "Spinach (powdered)",
@@ -1143,8 +1143,8 @@ $(function(){
       "asin": "",
       "volumeStr": "",
       "id": "5581b2621df750831932a308",
-      "maxAmount": 9*33.33,
-      "minAmount": 9*33.33
+      "maxAmount": 6.7*33.33,
+      "minAmount": 6.7*33.33
     },
     {
       "persistedAsin": "",
@@ -1269,8 +1269,8 @@ $(function(){
       "asin": "",
       "volumeStr": "",
       "id": "5581b2621df750831932a306",
-      "maxAmount": 15*100,
-      "minAmount": 15*100
+      "maxAmount": 16*100,
+      "minAmount": 16*100
     },
     {
       "persistedAsin": "B004VLVD50",
@@ -2102,14 +2102,14 @@ $(function(){
         newNutrition["calories"]["max"] = newNutrition["calories"]["min"] + 50;
         newNutrition["calories"]["min"] = newNutrition["calories"]["min"] - 50;
 
-        newNutrition["carbs"]["max"] = newNutrition["carbs"]["min"] + 20;
-        newNutrition["carbs"]["min"] = newNutrition["carbs"]["min"] - 20;
+        newNutrition["carbs"]["max"] = newNutrition["carbs"]["min"] + 10;
+        newNutrition["carbs"]["min"] = newNutrition["carbs"]["min"] - 10;
 
         newNutrition["fat"]["max"] = newNutrition["fat"]["min"] + 5;
         newNutrition["fat"]["min"] = newNutrition["fat"]["min"] - 5;
 
-        newNutrition["protein"]["max"] = newNutrition["protein"]["min"] + 10;
-        newNutrition["protein"]["min"] = newNutrition["protein"]["min"] - 10;
+        newNutrition["protein"]["max"] = newNutrition["protein"]["min"] + 5;
+        newNutrition["protein"]["min"] = newNutrition["protein"]["min"] - 5;
 
         // also add a cost target
         /*

@@ -15,7 +15,10 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 ###################### http://code.tutsplus.com/tutorials/intro-to-flask-signing-in-and-out--net-29982
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://devuser:devpwd@localhost/vit'
+#This is for Pythonanywhere, delete the # when use
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://lishiyi:devpwd@lishiyi.mysql.pythonanywhere-services.com/lishiyi$vit'
  
+ ######################################################################
 from models import db
 db.init_app(app)
 #######################

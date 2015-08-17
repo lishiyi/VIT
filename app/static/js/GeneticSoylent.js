@@ -58,11 +58,21 @@ GeneticSoylent.prototype.nextGeneration = function() {
     this.currentGeneration++;
     this.render();
     //TODO
-    /*
-    if(currentGeneration > 5000){
-
+/**
+ * if currentGeneration is greater than 200, force it stop, and show the continue button.
+ *
+ *
+ */
+    if(this.currentGeneration > 50){
+        $('.calculating').hide();
+        $('.submit').show();
+        testGeneticSoylent.autoGenerate = false;
+        $('.pause-genetic-algorithm').hide();
+        $('.start-genetic-algorithm').show();
+        $('.hahahahaha').hide();
+        $('.sasasasasa').show();
     }
-    */
+    
     if (this.autoGenerate) {
         var self = this;
         setTimeout(function() {

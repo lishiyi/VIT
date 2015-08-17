@@ -158,10 +158,10 @@
 
 <div class="sasasasasa" style="display:none">
 {% if nutrientMerge %}
-<p>Calories: {{nutrientMerge.calories}}, Target: {{calories}}, Ratio: {{nutrientMerge.calories/calories*100}}% </p>
-<p>Carbs: {{nutrientMerge.carbs}}, Target: {{carbs}}, Ratio: {{nutrientMerge.carbs/carbs*100}}%</p>
-<p>Protein: {{nutrientMerge.protein}}, Target: {{protein}}, Ratio: {{nutrientMerge.protein/protein*100}}%</p>
-<p>Fat: {{nutrientMerge.fat}}, Target: {{fat}}, Ratio: {{nutrientMerge.fat/fat*100}}%</p>
+<p>Calories: {{nutrientMerge.calories}}, Target: {{calories}}, Ratio: {{nutrientMerge.calories*100/calories}}%</p>
+<p>Carbs: {{nutrientMerge.carbs}}, Ratio: {{nutrientMerge.carbs*4*100/nutrientMerge.calories}}% {{ratio.carbs}}</p>
+<p>Protein: {{nutrientMerge.protein}}, Ratio: {{nutrientMerge.protein*4*100/nutrientMerge.calories}}% {{ratio.protein}}</p>
+<p>Fat: {{nutrientMerge.fat}}, Ratio: {{nutrientMerge.fat*9*100/nutrientMerge.calories}}% {{ratio.fat}}</p>
 {% endif %}
 </div>
 

@@ -113,7 +113,7 @@ def user():
 
 		ingredientJsonLoads = None
 		nutrientMerge = None
-		ratio = None
+		ratio = {}
 
 		if ingredientJson:
 
@@ -131,10 +131,14 @@ def user():
 			nutrientMerge = json.loads(nutrientDeleteComma).copy()
 			nutrientMerge.update(json.loads(nutrientDeleteComma))
 
-			#ratio = {"calories": nutrientMerge.calories / session['calories'],
-			#		 "carbs":nutrientMerge.carbs / session['carbs'],
-			#		 "protein":nutrientMerge.carbs / session['protein'],
-			#		 "fat": nutrientMerge.carbs / session['fat']}
+			#ratio = {
+			#		 'carbs':nutrientMerge['carb']/nutrientMerge['calories'],
+			#		 'protein':nutrientMerge['protein']/nutrientMerge['calories'],
+			#		 'fat': nutrientMerge['protein']/nutrientMerge['calories']}
+
+			ratio['carbs'] = nutrientMerge['carbs'] * 4 / nutrientMerge['calories']
+			ratio['protein'] = nutrientMerge['protein'] * 4 / nutrientMerge['calories']
+			ratio['fat'] = nutrientMerge['fat'] * 9 /nutrientMerge['calories']
 
 			newUser = User(email = session['email'], 
 			gender = session['gender'], 
