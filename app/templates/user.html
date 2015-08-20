@@ -38,11 +38,15 @@
 #}
 
     <form method="POST">
-    <p> 
-    {{ form.email.label }}
-    {{ form.email(placeholder="example@gmail.com", class="form-control") }}</p>
- 
-    <p>
+
+    <div class="col-xs-6">
+        {{ form.name.label }}
+        {{ form.name(placeholder="Your name", class="form-control") }}
+    </div>
+    <div class="col-xs-6">
+        {{ form.email.label }}
+        {{ form.email(placeholder="example@gmail.com", class="form-control") }}
+    </div>
     <div class="col-xs-6">
     {{ form.gender.label }}
     {{ form.gender(class="radio") }}

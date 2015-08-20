@@ -6,11 +6,12 @@ from wtforms.validators import Required
 from models import db, User
 
 class UserForm(Form):
+	name = StringField("Name", default = "John Smith")
 	email = StringField("Email", default = "test@example.com")
 	gender = RadioField("Gender", choices=[("Male","Male"),("Female","Female")], default = "Male")
 	act = RadioField("Which of these describes your daily activity?", 
-		     choices=[(1,"Sedentary"),(2,"Low"),
-		     (3,"Active"),(4,"Very Active")], default = 3)
+		     choices=[("Sedentary","Sedentary"),("Low","Low"),
+		     ("Active","Active"),("Very Active","Very Active")], default = "Active")
 	weight = FloatField("Weight(lb)",  [validators.Required("Please enter your weight(lb).")], default = 170)
 	#height = FloatField("Height(cm)",  [validators.Required("Please enter your height(cm).")])
 

@@ -63,7 +63,7 @@ GeneticSoylent.prototype.nextGeneration = function() {
  *
  *
  */
-    if(this.currentGeneration > 50){
+    if(this.currentGeneration > 100){
         $('.calculating').hide();
         $('.submit').show();
         testGeneticSoylent.autoGenerate = false;

@@ -158,10 +158,17 @@
 
 <div class="sasasasasa" style="display:none">
 {% if nutrientMerge %}
-<p>Calories: {{nutrientMerge.calories}}, Target: {{calories}}, Ratio: {{nutrientMerge.calories*100/calories}}%</p>
-<p>Carbs: {{nutrientMerge.carbs}}, Ratio: {{nutrientMerge.carbs*4*100/nutrientMerge.calories}}% {{ratio.carbs}}</p>
-<p>Protein: {{nutrientMerge.protein}}, Ratio: {{nutrientMerge.protein*4*100/nutrientMerge.calories}}% {{ratio.protein}}</p>
-<p>Fat: {{nutrientMerge.fat}}, Ratio: {{nutrientMerge.fat*9*100/nutrientMerge.calories}}% {{ratio.fat}}</p>
+<div class="col-xs-6">
+<p>Calories: {{nutrientMerge.calories}}, Target: {{calories}}</p>
+<p>Carbs: {{nutrientMerge.carbs}}, Ratio: {{ratio.carbs}}%</p>
+<p>Protein: {{nutrientMerge.protein}}, Ratio: {{ratio.protein}}%</p>
+<p>Fat: {{nutrientMerge.fat}}, Ratio: {{ratio.fat}}%</p>
+</div>
+<div class="col-xs-12">
+{% for item in ratio2 %}
+{{item}} : {{ratio2[item]}}%  
+{% endfor %}
+</div>
 {% endif %}
 </div>
 

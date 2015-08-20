@@ -52,11 +52,11 @@ def user():
 		else:
 			D = -161
 		BMR = math.floor(A + B - C + D)
-		if form.act.data == '1':
+		if form.act.data == "Sedentary":
 			F = 1.2
-		elif form.act.data == '2':
+		elif form.act.data == "Low":
 			F = 1.4
-		elif form.act.data == '3':
+		elif form.act.data == "Active":
 			F = 1.6
 		else:
 			F = 1.8
@@ -89,6 +89,7 @@ def user():
 		#session['carbs'] = carbs
 		if form.email.data:
 			email = form.email.data
+			session['name'] = form.name.data
 			session['gender'] = form.gender.data
 			session['act'] = form.act.data
 			session['weight'] = form.weight.data
@@ -114,33 +115,320 @@ def user():
 		ingredientJsonLoads = None
 		nutrientMerge = None
 		ratio = {}
-
+		ratio2 = {}
+		
 		if ingredientJson:
 
 			ingredientJsonDeleteComma = ingredientJson[0:-2] + '}'
 			ingredientJsonLoads = json.loads(ingredientJsonDeleteComma)
 			brown = int(ingredientJsonLoads['Brown Rice Flour Brown'])
-			protein_blend = int(ingredientJsonLoads['Protein Blend 2:1'])
-			carb_blend = int(ingredientJsonLoads['Carb Blend 1:1'])
-			fat_blend = int(ingredientJsonLoads['Fat Blend 1:2:1'])
+			protein_blend = int(ingredientJsonLoads['Protein Blend'])
+			carb_blend = int(ingredientJsonLoads['Carb Blend'])
+			fat_blend = int(ingredientJsonLoads['Fat Blend'])
 
 			nutrientDeleteComma = ingredientform.nutrient.data[0:-2] + '}'
 			nutrient2DeleteComma = ingredientform.nutrient2.data[0:-2] + '}'
 			#nutrientMerge = json.loads(nutrientDeleteComma) + json.loads(nutrient2DeleteComma)
 
 			nutrientMerge = json.loads(nutrientDeleteComma).copy()
-			nutrientMerge.update(json.loads(nutrientDeleteComma))
+			nutrientMerge.update(json.loads(nutrient2DeleteComma))
 
 			#ratio = {
 			#		 'carbs':nutrientMerge['carb']/nutrientMerge['calories'],
 			#		 'protein':nutrientMerge['protein']/nutrientMerge['calories'],
 			#		 'fat': nutrientMerge['protein']/nutrientMerge['calories']}
+			ratio['calories'] = nutrientMerge['calories']
+			ratio['carbs'] = int(nutrientMerge['carbs'] * 4 * 100 // nutrientMerge['calories'])
+			ratio['protein'] = int(nutrientMerge['protein'] * 4 * 100 // nutrientMerge['calories'])
+			ratio['fat'] = int(nutrientMerge['fat'] * 9 * 100 // nutrientMerge['calories'])
+			
 
-			ratio['carbs'] = nutrientMerge['carbs'] * 4 / nutrientMerge['calories']
-			ratio['protein'] = nutrientMerge['protein'] * 4 / nutrientMerge['calories']
-			ratio['fat'] = nutrientMerge['fat'] * 9 /nutrientMerge['calories']
+			#del
+			#del nutrientMerge['Omega-6:Omega-3']
 
-			newUser = User(email = session['email'], 
+			tempNutrition = {
+                        "soluble-fiber_max": 0,
+                        "soluble-fiber": 0,
+                        "saturated-fat_max": 0,
+                        "saturated-fat": 0,
+                        "polyunsaturated-fat_max": 0,
+                        "polyunsaturated-fat": 0,
+                        "monounsaturated-fat_max": 0,
+                        "monounsaturated-fat": 0,
+                        "insoluble-fiber_max": 0,
+                        "insoluble-fiber": 0,
+                        "name": "Sebastian",
+                        "calories": 2833,
+                        "calories_max": 0,
+                        "carbs": 404,
+                        "carbs_max": 0,
+                        "protein": 142,
+                        "protein_max": 0,
+                        "fat": 63,
+                        "fat_max": 0,
+                        "omega_3": 1.6,
+                        "omega_3_max": 0,
+                        "omega_6": 17,
+                        "omega_6_max": 0,
+                        "fiber": 28,
+                        "fiber_max": 0,
+                        "cholesterol": 0,
+                        "cholesterol_max": 0,
+                        "calcium": 1,    #M,>50, 1.2
+                        "calcium_max": 2.5,
+                        "chloride": 2.3, #M,>50, 2.0
+                        "chloride_max": 3.6,
+                        "chromium": 35, #M,>50, 30
+                        "chromium_max": 0,
+                        "copper": 0.9,
+                        "copper_max": 10,
+                        "iodine": 150,
+                        "iodine_max": 1100,
+                        "iron": 8,
+                        "iron_max": 45,
+                        "magnesium": 420,
+                        "magnesium_max": 770,
+                        "maganese": 2.3,
+                        "maganese_max": 11,
+                        "molybdenum": 45,
+                        "molybdenum_max": 2000,
+                        "phosphorus": 0.7,
+                        "phosphorus_max": 4,
+                        "potassium": 3.5,
+                        "potassium_max": 0,
+                        "selinium": 55,
+                        "selinium_max": 400,
+                        "sodium": 1.5, #M,>50, 1.3
+                        "sodium_max": 2.3,
+                        "sulfur": 2,
+                        "sulfur_max": 0,
+                        "zinc": 11,
+                        "zinc_max": 40,
+                        "vitamin_a": 3000,
+                        "vitamin_a_max": 10000,
+                        "vitamin_b6": 1.3, #M,>50, 1.7
+                        "vitamin_b6_max": 100,
+                        "vitamin_b12": 2.4,
+                        "vitamin_b12_max": 0,
+                        "vitamin_c": 90,
+                        "vitamin_c_max": 2000,
+                        "vitamin_d": 200,  #M,>50, 400
+                        "vitamin_d_max": 4000,
+                        "vitamin_e": 15,
+                        "vitamin_e_max": 1000,
+                        "vitamin_k": 120,
+                        "vitamin_k_max": 0,
+                        "thiamin": 1.2,
+                        "thiamin_max": 0,
+                        "riboflavin": 1.3,
+                        "riboflavin_max": 0,
+                        "niacin": 16,
+                        "niacin_max": 35,
+                        "folate": 400,
+                        "folate_max": 1000,
+                        "panthothenic": 5,
+                        "panthothenic_max": 0,
+                        "biotin": 30,
+                        "biotin_max": 0,
+                        "choline": 550,
+                        "choline_max": 3500
+                      }
+
+			if session['gender'] == "Male" and session['age'] > 50:
+				tempNutrition["calcium"] = 1.2
+				tempNutrition["chloride"] = 2.0
+				tempNutrition["chromium"] = 30
+				tempNutrition["sodium"] = 1.3
+				tempNutrition["vitamin_b6"] = 1.7
+				tempNutrition["vitamin_d"] = 400
+
+			if session['gender'] == "Female" and session['age'] <= 50:
+				tempNutrition = {
+                        "soluble-fiber_max": 0,
+                        "soluble-fiber": 0,
+                        "saturated-fat_max": 0,
+                        "saturated-fat": 0,
+                        "polyunsaturated-fat_max": 0,
+                        "polyunsaturated-fat": 0,
+                        "monounsaturated-fat_max": 0,
+                        "monounsaturated-fat": 0,
+                        "insoluble-fiber_max": 0,
+                        "insoluble-fiber": 0,
+                        "name": "Sebastian",
+                        "calories": 2833,
+                        "calories_max": 0,
+                        "carbs": 404,
+                        "carbs_max": 0,
+                        "protein": 142,
+                        "protein_max": 0,
+                        "fat": 63,
+                        "fat_max": 0,
+                        "omega_3": 1.6,
+                        "omega_3_max": 0,
+                        "omega_6": 17,
+                        "omega_6_max": 0,
+                        "fiber": 28,
+                        "fiber_max": 0,
+                        "cholesterol": 0,
+                        "cholesterol_max": 0,
+                        "calcium": 1,
+                        "calcium_max": 2.5,
+                        "chloride": 2.3,
+                        "chloride_max": 3.6,
+                        "chromium": 25,
+                        "chromium_max": 0,
+                        "copper": 0.9,
+                        "copper_max": 10,
+                        "iodine": 150,
+                        "iodine_max": 1100,
+                        "iron": 18,
+                        "iron_max": 45,
+                        "magnesium": 320,
+                        "magnesium_max": 770,
+                        "maganese": 1.8,
+                        "maganese_max": 11,
+                        "molybdenum": 45,
+                        "molybdenum_max": 2000,
+                        "phosphorus": 0.7,
+                        "phosphorus_max": 4,
+                        "potassium": 3.5,
+                        "potassium_max": 0,
+                        "selinium": 55,
+                        "selinium_max": 400,
+                        "sodium": 1.5,
+                        "sodium_max": 2.3,
+                        "sulfur": 2,
+                        "sulfur_max": 0,
+                        "zinc": 8,
+                        "zinc_max": 40,
+                        "vitamin_a": 2333,
+                        "vitamin_a_max": 10000,
+                        "vitamin_b6": 1.3,
+                        "vitamin_b6_max": 100,
+                        "vitamin_b12": 2.4,
+                        "vitamin_b12_max": 0,
+                        "vitamin_c": 75,
+                        "vitamin_c_max": 2000,
+                        "vitamin_d": 200,
+                        "vitamin_d_max": 4000,
+                        "vitamin_e": 15,
+                        "vitamin_e_max": 1000,
+                        "vitamin_k": 90,
+                        "vitamin_k_max": 0,
+                        "thiamin": 1.1,
+                        "thiamin_max": 0,
+                        "riboflavin": 1.1,
+                        "riboflavin_max": 0,
+                        "niacin": 14,
+                        "niacin_max": 35,
+                        "folate": 400,
+                        "folate_max": 1000,
+                        "panthothenic": 5,
+                        "panthothenic_max": 0,
+                        "biotin": 30,
+                        "biotin_max": 0,
+                        "choline": 425,
+                        "choline_max": 3500
+                      }
+
+			if session['gender'] == "Female" and session['age'] > 50:
+				tempNutrition = {
+                        "soluble-fiber_max": 0,
+                        "soluble-fiber": 0,
+                        "saturated-fat_max": 0,
+                        "saturated-fat": 0,
+                        "polyunsaturated-fat_max": 0,
+                        "polyunsaturated-fat": 0,
+                        "monounsaturated-fat_max": 0,
+                        "monounsaturated-fat": 0,
+                        "insoluble-fiber_max": 0,
+                        "insoluble-fiber": 0,
+                        "name": "Sebastian",
+                        "calories": 2833,
+                        "calories_max": 0,
+                        "carbs": 404,
+                        "carbs_max": 0,
+                        "protein": 142,
+                        "protein_max": 0,
+                        "fat": 63,
+                        "fat_max": 0,
+                        "omega_3": 1.6,
+                        "omega_3_max": 0,
+                        "omega_6": 17,
+                        "omega_6_max": 0,
+                        "fiber": 28,
+                        "fiber_max": 0,
+                        "cholesterol": 0,
+                        "cholesterol_max": 0,
+                        "calcium": 1,
+                        "calcium_max": 2.5,
+                        "chloride": 2.0,
+                        "chloride_max": 3.6,
+                        "chromium": 20,
+                        "chromium_max": 0,
+                        "copper": 0.9,
+                        "copper_max": 10,
+                        "iodine": 150,
+                        "iodine_max": 1100,
+                        "iron": 8,
+                        "iron_max": 45,
+                        "magnesium": 320,
+                        "magnesium_max": 770,
+                        "maganese": 1.8,
+                        "maganese_max": 11,
+                        "molybdenum": 45,
+                        "molybdenum_max": 2000,
+                        "phosphorus": 0.7,
+                        "phosphorus_max": 3,
+                        "potassium": 3.5,
+                        "potassium_max": 0,
+                        "selinium": 55,
+                        "selinium_max": 400,
+                        "sodium": 1.3,
+                        "sodium_max": 2.3,
+                        "sulfur": 2,
+                        "sulfur_max": 0,
+                        "zinc": 8,
+                        "zinc_max": 40,
+                        "vitamin_a": 2333,
+                        "vitamin_a_max": 10000,
+                        "vitamin_b6": 1.5,
+                        "vitamin_b6_max": 100,
+                        "vitamin_b12": 2.4,
+                        "vitamin_b12_max": 0,
+                        "vitamin_c": 75,
+                        "vitamin_c_max": 2000,
+                        "vitamin_d": 400,
+                        "vitamin_d_max": 4000,
+                        "vitamin_e": 15,
+                        "vitamin_e_max": 1000,
+                        "vitamin_k": 90,
+                        "vitamin_k_max": 0,
+                        "thiamin": 1.1,
+                        "thiamin_max": 0,
+                        "riboflavin": 1.1,
+                        "riboflavin_max": 0,
+                        "niacin": 14,
+                        "niacin_max": 35,
+                        "folate": 400,
+                        "folate_max": 1000,
+                        "panthothenic": 5,
+                        "panthothenic_max": 0,
+                        "biotin": 30,
+                        "biotin_max": 0,
+                        "choline": 425,
+                        "choline_max": 3500
+                      }
+
+			for item in nutrientMerge:
+
+				ratio2[item] = int(nutrientMerge[item] * 100 // tempNutrition[item])
+
+
+
+
+			newUser = User(name = session['name'],
+			email = session['email'], 
 			gender = session['gender'], 
 			act = session['act'], 
 			weight = session['weight'],
@@ -158,7 +446,9 @@ def user():
 			fat_blend = fat_blend,
 			deviation = ingredientform.deviation.data,
 			nutrient = nutrientDeleteComma,
-			nutrient2 = nutrient2DeleteComma
+			nutrient2 = nutrient2DeleteComma,
+			nutrientMerge = str(nutrientMerge),
+			ratio = str(ratio)
 			)
 
 			#session.pop('email', None)
@@ -191,7 +481,7 @@ def user():
 			fat = fat, carbs = carbs, gender = form.gender.data, age = form.age.data,
 			email = email, ingredientform = ingredientform, 
 			ingredientJsonLoads = ingredientJsonLoads, nutrientMerge = nutrientMerge,
-			ratio = ratio)
+			ratio = ratio, ratio2 = ratio2)
 
 	elif request.method == 'GET':
 		return render_template('user.html', form=form)

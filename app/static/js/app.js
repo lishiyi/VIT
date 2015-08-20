@@ -771,7 +771,7 @@ $(function(){
     }, */
     {
       "persistedAsin": "",
-      "name": "Syrup, cane",
+      "name": "Cane Sugar",
       "form": "Powder",
       "unit": "g",
       "container_size": 907.185,
@@ -1080,8 +1080,8 @@ $(function(){
       "asin": "",
       "volumeStr": "",
       "id": "5581b2621df750831932a309",
-      "maxAmount": 7*8,
-      "minAmount": 7*8
+      "maxAmount": 5*8,
+      "minAmount": 5*8
     },
     {
       "persistedAsin": "",
@@ -1211,7 +1211,7 @@ $(function(){
     },
     {
       "persistedAsin": "",
-      "name": "Leavening agents, baking powder, low-sodium",
+      "name": "Baking powder",
       "form": "Powder",
       "unit": "g",
       "container_size": 11339.8,
@@ -1337,7 +1337,7 @@ $(function(){
     }, 
     {
      "persistedAsin": "",
-     "name": "Protein Blend 2:1",
+     "name": "Protein Blend",
      "form": "Powder",
      "unit": "g",
      "container_size": 0,
@@ -1398,7 +1398,7 @@ $(function(){
    },
 {
      "persistedAsin": "",
-     "name": "Carb Blend 1:1",
+     "name": "Carb Blend",
      "form": "Powder",
      "unit": "g",
      "container_size": 0,
@@ -1459,7 +1459,7 @@ $(function(){
    },
 {
      "persistedAsin": "",
-     "name": "Fat Blend 1:2:1",
+     "name": "Fat Blend",
      "form": "Powder",
      "unit": "g",
      "container_size": 0,
