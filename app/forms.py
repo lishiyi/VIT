@@ -12,8 +12,9 @@ class UserForm(Form):
 	act = RadioField("Which of these describes your daily activity?", 
 		     choices=[("Sedentary","Sedentary"),("Low","Low"),
 		     ("Active","Active"),("Very Active","Very Active")], default = "Active")
-	weight = FloatField("Weight(lb)",  [validators.Required("Please enter your weight(lb).")], default = 170)
+	weight = FloatField("Weight",  [validators.Required("Please enter your weight(lb).")], default = 170)
 	#height = FloatField("Height(cm)",  [validators.Required("Please enter your height(cm).")])
+	weightUnit = SelectField("Unit", choices=[("lb", "lb"), ("kg", "kg")], default = "lb")
 
 	height = SelectField("Height", choices=[(152.4, "5\'0 - 152.4cm"), (154.9, "5\'1 - 154.9cm"),
 		(157.4, "5\'2 - 157.4cm"),(160, "5\'3 - 160cm"),(162.5, "5\'4 - 162.5cm"),

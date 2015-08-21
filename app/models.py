@@ -40,11 +40,12 @@ class User(db.Model):
 	nutrient2 = db.Column(db.String(255))
 	nutrientMerge = db.Column(db.String(255))
 
-	ratio = db.Column(db.String(255))
+	ratioJson1 = db.Column(db.String(255))
+	ratioJson2 = db.Column(db.String(255))
 
 	def __init__(self, name, email, gender, act, weight, height, goal, age, calories, protein, 
 		fat, carbs, ingredientJson, brown, protein_blend, carb_blend, fat_blend
-		,deviation, nutrient, nutrient2, nutrientMerge, ratio):
+		,deviation, nutrient, nutrient2, nutrientMerge, ratioJson1, ratioJson2):
 		self.name = name
 		self.email = email
 		self.gender = gender
@@ -66,4 +67,5 @@ class User(db.Model):
 		self.nutrient = nutrient
 		self.nutrient2 = nutrient2
 		self.nutrientMerge = nutrientMerge
-		self.ratio = ratio
+		self.ratioJson1 = ratioJson1
+		self.ratioJson2 = ratioJson2

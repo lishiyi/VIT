@@ -44,7 +44,12 @@ def user():
 	
 	if request.method == 'POST':
 
-		A = form.weight.data / 2.2 * 9.99
+		if form.weightUnit.data == "lb":
+			weight = form.weight.data
+		else:
+			weight = form.weight.data * 2.20462262
+
+		A = weight / 2.2 * 9.99
 		B = float(form.height.data) * 6.25
 		C = form.age.data * 4.92
 		if form.gender.data == "Male":
@@ -72,7 +77,7 @@ def user():
 		if TDEE < 1758:
 			TDEE = 1758
 			 
-		protein = form.weight.data  * 0.88
+		protein = weight  * 0.88
 		# Calculate the fat
 		fat = TDEE * 0.25 / 9
 		if fat < 60.07:
@@ -92,7 +97,7 @@ def user():
 			session['name'] = form.name.data
 			session['gender'] = form.gender.data
 			session['act'] = form.act.data
-			session['weight'] = form.weight.data
+			session['weight'] = weight
 			session['height'] = form.height.data
 			session['goal'] = form.goal.data
 			session['age'] = form.age.data
@@ -137,11 +142,15 @@ def user():
 			#		 'carbs':nutrientMerge['carb']/nutrientMerge['calories'],
 			#		 'protein':nutrientMerge['protein']/nutrientMerge['calories'],
 			#		 'fat': nutrientMerge['protein']/nutrientMerge['calories']}
-			ratio['calories'] = nutrientMerge['calories']
+			ratio['calories-Amount'] = nutrientMerge['calories']
 			ratio['carbs'] = int(nutrientMerge['carbs'] * 4 * 100 // nutrientMerge['calories'])
 			ratio['protein'] = int(nutrientMerge['protein'] * 4 * 100 // nutrientMerge['calories'])
 			ratio['fat'] = int(nutrientMerge['fat'] * 9 * 100 // nutrientMerge['calories'])
-			
+			ratio['carbs-Amount'] = nutrientMerge['carbs']
+			ratio['protein-Amount'] = nutrientMerge['protein']
+			ratio['fat-Amount'] = nutrientMerge['fat']
+			ratio['fiber-Amount'] = nutrientMerge['fiber']
+			ratio['saturated-fat-Amount'] = nutrientMerge['saturated-fat']
 
 			#del
 			#del nutrientMerge['Omega-6:Omega-3']
@@ -149,12 +158,12 @@ def user():
 			tempNutrition = {
                         "soluble-fiber_max": 0,
                         "soluble-fiber": 0,
-                        "saturated-fat_max": 0,
-                        "saturated-fat": 0,
-                        "polyunsaturated-fat_max": 0,
-                        "polyunsaturated-fat": 0,
-                        "monounsaturated-fat_max": 0,
-                        "monounsaturated-fat": 0,
+                        "saturated-fat_max": 999,
+                        "saturated-fat": 20,
+                        "polyunsaturated-fat_max": 999,
+                        "polyunsaturated-fat": 1,
+                        "monounsaturated-fat_max": 999,
+                        "monounsaturated-fat": 1,
                         "insoluble-fiber_max": 0,
                         "insoluble-fiber": 0,
                         "name": "Sebastian",
@@ -174,11 +183,11 @@ def user():
                         "fiber_max": 0,
                         "cholesterol": 0,
                         "cholesterol_max": 0,
-                        "calcium": 1,    #M,>50, 1.2
+                        "calcium": 1,
                         "calcium_max": 2.5,
-                        "chloride": 2.3, #M,>50, 2.0
+                        "chloride": 2.3,
                         "chloride_max": 3.6,
-                        "chromium": 35, #M,>50, 30
+                        "chromium": 35,
                         "chromium_max": 0,
                         "copper": 0.9,
                         "copper_max": 10,
@@ -198,7 +207,7 @@ def user():
                         "potassium_max": 0,
                         "selinium": 55,
                         "selinium_max": 400,
-                        "sodium": 1.5, #M,>50, 1.3
+                        "sodium": 1.5,
                         "sodium_max": 2.3,
                         "sulfur": 2,
                         "sulfur_max": 0,
@@ -206,13 +215,13 @@ def user():
                         "zinc_max": 40,
                         "vitamin_a": 3000,
                         "vitamin_a_max": 10000,
-                        "vitamin_b6": 1.3, #M,>50, 1.7
+                        "vitamin_b6": 1.3,
                         "vitamin_b6_max": 100,
                         "vitamin_b12": 2.4,
                         "vitamin_b12_max": 0,
                         "vitamin_c": 90,
                         "vitamin_c_max": 2000,
-                        "vitamin_d": 200,  #M,>50, 400
+                        "vitamin_d": 200,
                         "vitamin_d_max": 4000,
                         "vitamin_e": 15,
                         "vitamin_e_max": 1000,
@@ -246,12 +255,12 @@ def user():
 				tempNutrition = {
                         "soluble-fiber_max": 0,
                         "soluble-fiber": 0,
-                        "saturated-fat_max": 0,
-                        "saturated-fat": 0,
-                        "polyunsaturated-fat_max": 0,
-                        "polyunsaturated-fat": 0,
-                        "monounsaturated-fat_max": 0,
-                        "monounsaturated-fat": 0,
+                        "saturated-fat_max": 999,
+                        "saturated-fat": 20,
+                        "polyunsaturated-fat_max": 999,
+                        "polyunsaturated-fat": 1,
+                        "monounsaturated-fat_max": 999,
+                        "monounsaturated-fat": 1,
                         "insoluble-fiber_max": 0,
                         "insoluble-fiber": 0,
                         "name": "Sebastian",
@@ -335,12 +344,12 @@ def user():
 				tempNutrition = {
                         "soluble-fiber_max": 0,
                         "soluble-fiber": 0,
-                        "saturated-fat_max": 0,
-                        "saturated-fat": 0,
-                        "polyunsaturated-fat_max": 0,
-                        "polyunsaturated-fat": 0,
-                        "monounsaturated-fat_max": 0,
-                        "monounsaturated-fat": 0,
+                        "saturated-fat_max": 999,
+                        "saturated-fat": 20,
+                        "polyunsaturated-fat_max": 999,
+                        "polyunsaturated-fat": 1,
+                        "monounsaturated-fat_max": 999,
+                        "monounsaturated-fat": 1,
                         "insoluble-fiber_max": 0,
                         "insoluble-fiber": 0,
                         "name": "Sebastian",
@@ -425,8 +434,20 @@ def user():
 				ratio2[item] = int(nutrientMerge[item] * 100 // tempNutrition[item])
 
 
+			ratio['fiber'] = int(nutrientMerge['fiber'] * 100 // tempNutrition['fiber'])
+			ratio['saturated-fat'] = ratio2['saturated-fat']
+######################## First Json FIle ##################################
+			ratioJson1 = ratio2.copy()
+			ratioJson1.update(ratio)
+			ratioJson1['sodium-Amount'] = nutrientMerge['sodium']
+			ratioJson1['potassium-Amount'] = nutrientMerge['potassium']
 
-
+			del ratioJson1['polyunsaturated-fat']
+			del ratioJson1['monounsaturated-fat']
+######################## Second Json File ############################
+			ratioJson2 = nutrientMerge.copy()
+			ratioJson2.update(ratio)   
+######################## Database #####################################
 			newUser = User(name = session['name'],
 			email = session['email'], 
 			gender = session['gender'], 
@@ -448,35 +469,14 @@ def user():
 			nutrient = nutrientDeleteComma,
 			nutrient2 = nutrient2DeleteComma,
 			nutrientMerge = str(nutrientMerge),
-			ratio = str(ratio)
+			ratioJson1 = str(ratioJson1),
+			ratioJson2 = str(ratioJson2)
 			)
 
-			#session.pop('email', None)
-			#session.pop('gender', None)
-			#session.pop('act', None)
-			#session.pop('weight', None)
-			#session.pop('height', None)
-			#session.pop('goal', None)
-			#session.pop('age', None)
-			#session.pop('calories', None)
-			#session.pop('protein', None)
-			#session.pop('fat', None)
-			#session.pop('carb', None)
 
 			db.session.add(newUser)
 			db.session.commit()
-			#session.pop('email', None)
 
-		#json = ingredientform.json.data
-
-		#if ingredientform.validate_on_submit():
-		#g.user.json = form.json.data
-		#db.session.add(g.user)
-		#db.session.commit()
-
-		#return render_template('index.html', form=form, A = A, B = B, C = C, D = D, 
-		#	   BMR = BMR, TDEE = TDEE,  protein = protein, fat = fat, carbs = carbs)
-		#return redirect(url_for('user'))
 		return render_template('index.html', calories = TDEE,  protein = protein, 
 			fat = fat, carbs = carbs, gender = form.gender.data, age = form.age.data,
 			email = email, ingredientform = ingredientform, 

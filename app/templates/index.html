@@ -129,7 +129,7 @@
             <br />
 
         <form class="form-inline" align="center">
-            <a href="{{url_for('user')}}"><i class="fa fa-user fa-lg">User</i></a>
+            <a href="{{url_for('user')}}"><i class="fa fa-user fa-lg">{{session['name']}}</i></a>
 
             <label>&nbsp;&nbsp;&nbsp;&nbsp;Generation:</label>
             <input class="generation form-control input-sm" type="text" style="width: 50px; text-align: center; margin-right: 20px; margin-left: 10px" />
@@ -162,7 +162,7 @@
 <p>Calories: {{nutrientMerge.calories}}, Target: {{calories}}</p>
 <p>Carbs: {{nutrientMerge.carbs}}, Ratio: {{ratio.carbs}}%</p>
 <p>Protein: {{nutrientMerge.protein}}, Ratio: {{ratio.protein}}%</p>
-<p>Fat: {{nutrientMerge.fat}}, Ratio: {{ratio.fat}}%</p>
+<p>Fat: {{nutrientMerge.fat}}, Ratio: {{ratio.fat}}%  Saturated-fat: {{ratio2['saturated-fat']}}%</p>
 </div>
 <div class="col-xs-12">
 {% for item in ratio2 %}

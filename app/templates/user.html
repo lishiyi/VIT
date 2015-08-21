@@ -60,11 +60,11 @@
     <p>
     <div class="col-xs-6">
     {{ form.weight.label }}
-    <div class="input-group">
-    {{ form.weight(class="form-control") }}
-    <div class="input-group-addon">lb</div>
-    </div></div>
-
+        <div class="input-group">
+        {{ form.weight(class="form-control") }}
+        <div class="input-group-addon">{{ form.weightUnit }}</div>  
+        </div>
+    </div>
 
     <div class="col-xs-6">
     {{ form.height.label }}
