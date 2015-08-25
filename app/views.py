@@ -1,6 +1,6 @@
 #import os
 import math
-from flask import render_template, flash, redirect, session, url_for, request, g, send_from_directory, make_response, jsonify
+from flask import render_template, flash, redirect, session, url_for, request, g, send_from_directory, make_response, jsonify, Blueprint
 #from flask.ext.login import login_user, logout_user, current_user, login_required, current_app
 from app import app, db#, lm
 from forms import UserForm, IngredientsForm
@@ -19,7 +19,14 @@ from flask.ext.sqlalchemy import get_debug_queries
 #app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 #mysql.init_app(app)
 
-############################################################################		
+############################################################################	
+#     Charts ################################################################
+import chartkick
+ck = Blueprint('ck_page', __name__, static_folder=chartkick.js(), static_url_path='/static')
+app.register_blueprint(ck, url_prefix='/ck')
+app.jinja_env.add_extension("chartkick.ext.charts")
+
+###########################################################################	
 @app.route('/index', methods=['GET', 'POST'])
 #@login_required
 def index():
@@ -123,6 +130,7 @@ def user():
 		ratio2 = {}
 		ratioJson1 = {}
 		ratioJson2 = {}
+		pieChartData = {}
 		
 		if ingredientJson:
 
@@ -145,9 +153,9 @@ def user():
 			#		 'protein':nutrientMerge['protein']/nutrientMerge['calories'],
 			#		 'fat': nutrientMerge['protein']/nutrientMerge['calories']}
 			ratio['calories-Amount'] = nutrientMerge['calories']
-			ratio['carbs'] = int(nutrientMerge['carbs'] * 4 * 100 // nutrientMerge['calories'])
-			ratio['protein'] = int(nutrientMerge['protein'] * 4 * 100 // nutrientMerge['calories'])
-			ratio['fat'] = int(nutrientMerge['fat'] * 9 * 100 // nutrientMerge['calories'])
+			ratio['carbs'] = nutrientMerge['carbs'] * 4 * 1000 // nutrientMerge['calories'] / 10.0
+			ratio['protein'] = nutrientMerge['protein'] * 4 * 1000 // nutrientMerge['calories'] / 10.0
+			ratio['fat'] = nutrientMerge['fat'] * 9 * 1000 // nutrientMerge['calories'] / 10.0
 			ratio['carbs-Amount'] = nutrientMerge['carbs']
 			ratio['protein-Amount'] = nutrientMerge['protein']
 			ratio['fat-Amount'] = nutrientMerge['fat']
@@ -450,6 +458,13 @@ def user():
 			ratioJson2 = nutrientMerge.copy()
 			ratioJson2.update(ratio)   
 ######################## Database #####################################
+
+			#pieChartData = {'carbs': ratio['carbs'], 'protein': ratio['protein'], 'fat': ratio['fat']}
+			#pieChartData['carbs'] = ratio['carbs']
+			#pieChartData['protein'] = ratio['protein']
+			#pieChartData['fat'] = ratio['fat']
+			pieChartData = {'carbs': nutrientMerge['carbs'] * 4, 'protein': nutrientMerge['protein'] * 4, 'fat': nutrientMerge['fat'] * 9}
+
 			newUser = User(name = session['name'],
 			email = session['email'], 
 			gender = session['gender'], 
@@ -472,7 +487,7 @@ def user():
 			nutrient2 = nutrient2DeleteComma,
 			nutrientMerge = str(nutrientMerge),
 			ratioJson1 = str(ratioJson1),
-			ratioJson2 = str(ratioJson2)
+			ratioJson2 = str(ratioJson2),
 			)
 
 
@@ -484,7 +499,8 @@ def user():
 			email = email, ingredientform = ingredientform, 
 			ingredientJsonLoads = ingredientJsonLoads, nutrientMerge = nutrientMerge,
 			ratio = ratio, ratio2 = ratio2, ratioJson1 = str(ratioJson1), 
-			ratioJson2 = str(ratioJson2))
+			ratioJson2 = str(ratioJson2), 
+			pieChartData = pieChartData)
 
 	elif request.method == 'GET':
 		return render_template('user.html', form=form)

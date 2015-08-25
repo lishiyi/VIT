@@ -8,6 +8,9 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
+<!-- For Charts -->
+    <script src="http://www.google.com/jsapi"></script>
+    <script src="ck/static/chartkick.js"></script>
 
     <style>
         .table-condensed {
@@ -118,7 +121,7 @@
 </p></div>
 -->
 #}
-
+{% pie_chart pieChartData %}
     <div class="row">
         <div class="col-xs-4">
             <div class="img">
