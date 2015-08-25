@@ -21,8 +21,6 @@
 </head>
 <body>
 
-
-
 <div class="col-xs-2"></div>
 <div class="col-xs-8">
 <h2>Please input your information</h2>
@@ -32,10 +30,6 @@
    <a href="{{url_for('user')}}"><i class="fa fa-user fa-lg">User</i></a>
 </p>
 
-{#
-{{ wtf.quick_form(form) }}
-{{ form.email(placeholder="example@gmail.com", class="form-control", id = "ingredientTableJsonVal", rows="3", style="width:100%") }}
-#}
 
     <form method="POST">
 
@@ -52,7 +46,7 @@
     {{ form.gender(class="radio") }}
     </div>
 
-    <div class="col-xs-6">
+    <div class="col-xs-12">
     {{ form.act.label }}
     {{ form.act(class="radio") }}
     </div></p>
@@ -93,69 +87,5 @@
 
 </div>
 
-
-
 </body>
 </html>
-
-
-
-
-
-
-{#
-
-<p>A : {{A}}</p>
-<p>B : {{B}}</p>
-<p>C : {{C}}</p>
-<p>D : {{D}}</p>
-<p>BMR : {{BMR}}</p>
-<p>TDEE : {{TDEE}}</p>
-<p>protein : {{protein}}</p>
-<p>fat : {{fat}}</p>
-<p>carbs : {{carbs}}</p>
-
-{{ form.hidden_tag() }}
-     
-    <p>{{ form.email.label }}
-    {{ form.email }}</p>             
-     
-    <p>{{ form.gender.label }}
-    {{ form.gender }}</p> 
-     
-    <p>{{ form.act.label }}
-    {{ form.act }}</p>          
-
-    <p>{{ form.weight.label }}
-    {{ form.weight }}</p>          
-     
-    <p>{{ form.height.label }}
-    {{ form.height }}</p> 
-
-    <p>{{ form.goal.label }}
-    {{ form.goal }}</p> 
-
-    <p>{{ form.age.label }}
-    {{ form.age }}</p> 
-
-    {{ form.submit }}
-
-    #}
-
-
-{#
-
-{{ wtf.quick_form(form) }}
-
-<p>{{ wtf.form_field(form.email) }}</p>
-<p>{{ form.gender.label }}
-{{ wtf.form_field(form.gender) }}</p>
-<p>{{ form.act.label }}
-{{ wtf.form_field(form.act) }}</p>
-<p>{{ wtf.form_field(form.weight) }}</p>
-<p>{{ wtf.form_field(form.height) }}</p>
-<p>{{ form.goal.label }}
-{{ wtf.form_field(form.goal) }}</p>
-<p>{{ wtf.form_field(form.age) }}</p>
-{{ form.submit }}
-#}

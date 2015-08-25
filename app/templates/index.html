@@ -220,7 +220,17 @@
 
     <p><div id="nutrientHtmlJson"></div></p>
     <p><div id="nutrientHtmlJson2"></div></p>
-<div class="container">
+
+<div class="col-xs-12" >
+<h3>This is the 1st JSON</h3>
+{{ratioJson1}}
+</div>
+<div class="col-xs-12" >
+<h3>This is the 2nd JSON</h3>
+{{ratioJson2}}
+</div>
+
+<div class="container" style="display:none">
         <h2>Choose Your Own Recipe.</h2>
         {% if calories %}
         <h4>By our calculation, your target is shown as below.</h4>
@@ -234,6 +244,7 @@
         </textarea>
       
     </div>
+
 
  {#      
 <!--        <form>
@@ -296,12 +307,6 @@
     </div>
 
 <p>{{hiddenform}}</p>   -->   #}
-
-
-
-
-
-
 
 {# 
 <!--

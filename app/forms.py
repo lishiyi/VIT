@@ -10,8 +10,10 @@ class UserForm(Form):
 	email = StringField("Email", default = "test@example.com")
 	gender = RadioField("Gender", choices=[("Male","Male"),("Female","Female")], default = "Male")
 	act = RadioField("Which of these describes your daily activity?", 
-		     choices=[("Sedentary","Sedentary"),("Low","Low"),
-		     ("Active","Active"),("Very Active","Very Active")], default = "Active")
+		     choices=[("Sedentary","Sedentary Lifestyle, Little or No Exercise, Moderate Walking, Desk Job (Away from Home)"),
+		     ("Low","Lightly Active, Exercise or Moderate Sports 2 to 3 Days a Week, Light Jogging or Walking 5 to 7 Days a Week"),
+		     ("Active","Moderately Active, Physical Work, Exercise, or Sports 4 to 5 Days a Week, Construction Laborer"),
+		     ("Very Active","Very Active, Heavy Physical Work, Exercise, or Sports 6 to 7 Days a Week, Hard Laborer")], default = "Active")
 	weight = FloatField("Weight",  [validators.Required("Please enter your weight(lb).")], default = 170)
 	#height = FloatField("Height(cm)",  [validators.Required("Please enter your height(cm).")])
 	weightUnit = SelectField("Unit", choices=[("lb", "lb"), ("kg", "kg")], default = "lb")
